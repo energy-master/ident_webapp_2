@@ -82,6 +82,7 @@
         "sim_bot_number" : 0
     },
     "detections" : {},
+    
     "stream_data_loaded" : false,
     "active_models" : {},
     "selected_view_models" : {"interesting":[]},

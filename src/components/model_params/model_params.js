@@ -31,7 +31,7 @@ function ModelParams(props) {
                     variant="contained"
                     color="primary"
                     size="small"
-                    style={{ marginLeft: 16 }}
+                    style={{ marginLeft: 16, fontWeight: 'bold' }}
                     onClick={(event) => {
 
                         console.log(props)
@@ -40,7 +40,7 @@ function ModelParams(props) {
                         const url = 'https://marlin-network.hopto.org/cgi-bin/run_live.php';
                         const formData = new FormData();
                         console.log(props.acousticFile.fileName);
-                        formData.append('fileName', props.acousticFile.fileName);
+                        formData.append('fileName', props.file_path + "/" + props.acousticFile.fileName);
                         formData.append('model_id', props.model_parameters[0].model_id);
                         formData.append('user_uid', '0001vixen');
                         formData.append('ratio_active', props.model_parameters[0].ratio_active);
@@ -92,7 +92,7 @@ function ModelParams(props) {
                         variant="contained"
                         color="primary"
                         size="small"
-                        style={{ marginLeft: 16 }}
+                        style={{ marginLeft: 16, fontWeight: 'bold' }}
                         onClick={() => {
                             console.log(props)
                             let dl_path = '/marlin_live_data/dump/out/' + props.model_parameters[0].model_id + '.zip';
@@ -121,14 +121,13 @@ function ModelParams(props) {
                         variant="contained"
                         color="primary"
                         size="small"
-                        style={{ marginLeft: 16 }}
+                        style={{ marginLeft: 16, fontWeight: 'bold' }}
                         onClick={() => {
 
                             let report_path = `https://marlin-network.hopto.org/live/reports/site/reports/rpt_${props.model_parameters[0].model_id}`;
                             console.log(report_path);
-                            // let dl_path = '/marlin_live_data/dump/out/' + props.model_parameters[0].model_id + '.zip';
+                            
                             let link = document.createElement("a");
-                            // link.download = props.model_parameters[0].model_id + '.zip';
                             link.href = report_path;
                             link.click();
 
@@ -222,7 +221,7 @@ function ModelParams(props) {
             disableClickEventBubbling: true,
             headerClassName: 'dataHdr',
             renderCell: (params) => (
-                <Typography variant="overline" sx={{ color: 'white' }}>
+                <Typography variant="overline" sx={{ color: 'green', fontWeight:'bold' }}>
                     {params.value}
                 </Typography>
             ),
@@ -345,7 +344,8 @@ function ModelParams(props) {
 const mapStateToProps = (state) => ({
     model_parameters: state.model_parameters,
     acousticFile: state.acousticFileData,
-    selectedModels: state.selected_models
+    selectedModels: state.selected_models,
+    file_path : state.selected_filepath[0]
 })
 
 // const ConnectedFileDataGrid = connect((state) => {

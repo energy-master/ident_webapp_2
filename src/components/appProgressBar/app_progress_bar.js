@@ -29,11 +29,12 @@ function AppProgressBar(props) {
         progress = parseFloat(parseFloat(current_bot) / parseFloat(number_bots)) * 100;
     }
     console.log(progress);
+    let color = 'green';
     return (
         <>
             <Box display="flex" alignItems="center" p={3}>
-                <Box width="100%" mr={3}>
-                    <LinearProgress variant="determinate" value={progress} />
+                <Box width="100%" mr={6}>
+                    <LinearProgress variant="determinate" value={progress}  />
                 </Box>
             </Box>
         </>

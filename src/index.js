@@ -64,7 +64,8 @@ const store = createStore((state = app_data, action) => {
 
     return {
       ...state,
-      selected_stream: [action.payload]
+      selected_stream: [action.payload],
+     
     }
 
   }
@@ -515,6 +516,7 @@ const store = createStore((state = app_data, action) => {
     // console.log(action.payload)
     let current_p = state.model_parameters[0];
     current_p.run_title = 'Running';
+    current_p.status = 'Submitted'
     let running = 1;
 
     return {
@@ -527,7 +529,18 @@ const store = createStore((state = app_data, action) => {
     // console.log(action.payload)
     let current_p = state.model_parameters[0];
     current_p.run_title = 'Run IDent';
+    current_p.model_id = parseInt(Math.random() * 10000);
 
+    return {
+      ...state,
+      model_parameters: [current_p]
+    }
+  }
+  if (action.type == ('NEW_RUN_ID')) {
+    // console.log(action.payload)
+    let current_p = state.model_parameters[0];
+    //current_p.run_title = 'Run IDent';
+    current_p.model_id = parseInt(Math.random() * 10000);
 
     return {
       ...state,
