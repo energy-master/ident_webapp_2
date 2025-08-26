@@ -1,0 +1,109 @@
+{
+    "version" : 0.03,
+    
+    "acousticFileData" :
+        {
+            "fileName" : "No Active File",
+            "fileType" : "No Data",
+            "location" : "No Data",
+            "sampleRate" : "No Data",
+            "size"  : "No Data",
+            "length" : "No Data",
+            "status" : "Upload",
+            "timestamp" : "No time given",
+            "SHOW_SPEC_FLAG" : 0,
+            "GL_MESH_LOADED" : false
+        },
+    "models" : [
+        {
+            "id" : 1,
+            "name" : "Loading models from MARLIN database."
+        }
+    ],
+    "streams" : [
+        {
+           "id" : 1,
+        "name" : "Saved Files"   
+        }
+    ],
+    "stream_files": [
+        {
+            "id": 1,
+            "name": "Searching for files."
+        }
+    ],
+    "selected_models" : [],
+    "selected_stream" : [],
+    "selected_filepath" : [],
+    "ordered_stream_files" : {},
+    "model_id": "8449",
+    "paths":
+    {
+        "root_acoustic_path" : "/media/marlin/Elements41/marlin_live/",
+        "root_data_path" : "/media/marlin/Elements41/marlin_live_data/",
+        "root_acoustic_stream_path" : "/media/marlin/Elements41/marlin_live/streams/"
+
+    },
+    "openGl" : {"x_width" : 1500, "y_width" : 200, "number_transitions" : 10000 },
+    "polling_state" : {"running" : false, "job_sent" : false},
+    "results_summary" : [],
+    "plot_activity_data": {"labels" : [], "datasets": {}},
+    "model_parameters" : [{
+
+        "id" : 1,
+        "ratio_active" : 0.5,
+        "model_id" : "8449",
+        "numberBots" : 10,
+        "delta_t" : 0.1,
+        "nfft" : 1024,
+        "window_stream" : 60,
+        "status" : "Idle",
+        "percentage_complete" : 0.0,
+        "activation_level" : 0.85,
+        "target" : "general",
+        "similarity_threshold" : 0.8,
+        "run_title" : "Run IDent",
+        "active_bot_number" : 0,
+        "sim_bot_number" : 0,
+        "max_iter" : 0
+       
+    }],
+    "spectrogram" : {
+        "frequency_vector" : [],
+        "time_vector" : [],
+        "data_present" : false
+    },
+    "ft_geometry" : {},
+    "applicationLog" : [],
+    "logMessage" : "MARLIN IDent v0.5",
+    "sim_runnning" : 0,
+    "hud_data": {
+        "active_bot_number" : 0,
+        "sim_bot_number" : 0
+    },
+    "detections" : {},
+    "stream_data_loaded" : false,
+    "active_models" : {},
+    "selected_view_models" : {"interesting":[]},
+    "active_models_rows" : [
+        {
+            "id": 1,
+            "modelName": "No Models Found."
+        }
+    ],
+    "file_data" : {},
+    "app_init" : {
+        "camera" : true
+    },
+    "file_draw_data" : {},
+    "sim_models" : [],
+    "sim_activity" : [],
+    "sim_elapsed_time" : 0,
+    "sim_frequency_data" : [{
+        "fmax" : 0,
+        "fmin" : 0
+    }],
+    "sim_models_selected" : {"interesting":[]}
+    
+}
+    

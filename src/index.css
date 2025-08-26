@@ -1,0 +1,146 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: black;
+}
+
+/* *{
+  margin:10px;
+} */
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+
+/* GLOBALS */
+
+
+
+:root {
+
+  
+  /* Colors  */
+  --blue: #1e90ff;
+  --white: #ffffff;
+
+  /* Spec Panel */
+  --spec-panel-height: 95%;
+  --spec-panel-width: 100%;
+  --spec-panel-top: 5%;
+
+  /* Results panel */
+  --results-panel-height: 30%;
+  --results-panel-width:100%;
+  --results-panel-top:50%;
+
+  /* Data Panel */
+  --data-panel-bottom: 0px;
+  --data-panel-height: 20%;
+  --data-panel-width: 100%;
+
+  /* Plotter Panel */
+  --plotter-panel-top: 30%;
+  --plotter-panel-height: 20%;
+  --plotter-panel-width: 100%;
+
+  /* File data grid */
+  --file_grid_height: 100%;
+  --file_grid_width: 100%;
+  --file_grid_top: 80%;
+  --file_grid_left: 0%;
+
+  /* Control */
+  --control_height: 100%;
+  --control_width: 20%;
+  --control_top: 80%;
+  --control_left: 20%;
+ 
+  /* Logger */
+  --logger_width: 20%;
+  --logger_height: 100%;
+
+  /* Model Data */
+  --model_data_width:0%;
+  --model_data_height:100%;
+
+  /* Results Data */
+  --results_data_width: 100%;
+  --results_data_height: 100%;
+
+  /* Model Parms / Run */
+  --model_parms_width: 100%;
+  --model_parms_height: 100%;
+
+}
+
+html{
+  border: 1px solid black;
+}
+
+.panel-header{
+  font-size: 14px;
+}
+
+.data-panel{
+  position:absolute;
+  display: 'flex';
+  flex-direction: row;
+  bottom: var(--data-panel-bottom);
+  height: var(--data-panel-height);
+  width: var(--data-panel-width);
+ 
+  
+}
+
+.results-panel {
+  position: absolute;
+  display: 'flex';
+  flex-direction: row;
+  top: var(--results-panel-top);
+  height: var(--results-panel-height);
+  width: var(--results-panel-width);
+  
+}
+
+
+.spec-panel {
+  position: absolute;
+  display: 'flex';
+  flex-direction: row;
+  top: var(--spec-panel-top);
+  height: var(--spec-panel-height);
+  width: var(--spec-panel-width);
+ 
+}
+
+.plotter-panel {
+  position: absolute;
+  display: 'flex';
+  flex-direction: row;
+  top: var(--plotter-panel-top);
+  height: var(--plotter-panel-height);
+  width: var(--plotter-panel-width);
+ 
+}
+
+
+.dataHdr {
+  /* backgroundColor: black; */
+  /* background: black; */
+  color: white;
+  font-size: 16px;
+
+}
+
+.window-handle{
+  height:100px;
+  widht:100px;
+  background-color: black;
+  border:1pt solid #ffffff;
+}
