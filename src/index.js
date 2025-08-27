@@ -469,7 +469,7 @@ const store = createStore((state = app_data, action) => {
     current_p.active_bot_number = action.payload['active_bot'];
     current_p.sim_bot_number = action.payload['number_bots'];
     current_p.inner_loop = action.payload['inner_loop'];
-    
+
     return {
       ...state,
       model_parameters: [current_p]
@@ -526,6 +526,7 @@ const store = createStore((state = app_data, action) => {
     let current_p = state.model_parameters[0];
     current_p.run_title = 'Running';
     current_p.status = 'Submitted'
+    // current_p.model_id = parseInt(Math.random() * 10000);
     let running = 1;
 
 
@@ -545,7 +546,7 @@ const store = createStore((state = app_data, action) => {
     // console.log(action.payload)
     let current_p = state.model_parameters[0];
     current_p.run_title = 'Run IDent';
-    current_p.model_id = parseInt(Math.random() * 10000);
+   
 
     return {
       ...state,
