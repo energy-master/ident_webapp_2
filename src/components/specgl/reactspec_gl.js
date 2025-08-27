@@ -26,13 +26,34 @@ import ConnectedDrawEnergies from './draw_energies';
 import ConnectedLogger from './logging';
 import ConnectedGLHud from './hud';
 import ConnectedCameraAction from '../camera/camera';
+
 import ConnectedStreamImages from './spec_img';
 import ConnectedDrawStreamDetection from './draw_stream_detections';
 import Button from '@mui/material/Button';
+import ConnectedCameraOrders from '../camera/camera_order';
 
 extend({ MeshLineGeometry, MeshLineMaterial })
 
 const SpecGL = ({ }) => {
+    const dispatch = useDispatch();
+    const homeClick = () => {
+        console.log('Home view button clicked!');
+        // Add other logic here
+        let order_id = Math.random() * 999999;
+        dispatch({
+            type: 'CAMERA_ORDER', payload: {
+                'order_id': order_id,
+                'xpos': 0, 'ypos': 400, 'zpos': 1000,
+                'xLookAt': 0, 'yLookAt': 400, 'zLookAt': 0
+            }
+        })
+
+
+    };
+
+    const handleClick = () => {
+        
+    };
 
     const { autoRotate, mipmapBlur, luminanceThreshold, luminanceSmoothing, intensity } = useControls({
         autoRotate: !0,
@@ -72,7 +93,9 @@ const SpecGL = ({ }) => {
                 intensity={intensity}
             />
         </EffectComposer>
-        <ConnectedCameraAction />
+                <ConnectedCameraAction />
+                <ConnectedCameraOrders />
+                
             /* Scene */
         
                 {/* <ConnectedPlotLines /> */}
@@ -103,13 +126,13 @@ const SpecGL = ({ }) => {
             <div style={{ position: 'absolute', bottom: 10, left: 10 }}>
                 {/* <button onClick={handleZoomIn}>Zoom In</button>
                 <button>Reset Camera</button> */}
-                <Button variant="outlined">Reset Camera</Button>
+                <Button variant="outlined" onClick={homeClick}>Reset Camera</Button>
                 <Button variant="outlined">Live</Button>
             </div>
             <div style={{ position: 'absolute', bottom: 10, left: '20%' }}>
                 {/* <button onClick={handleZoomIn}>Zoom In</button>
                 <button>Reset Camera</button> */}
-                <Button variant="outlined" style={{width:'100px'}}>In +</Button>
+                <Button variant="outlined" style={{ width: '100px' }} onClick={handleZoomIn}>In +</Button>
                 <Button variant="outlined" style={{ width: '100px' }}>Out -</Button>
             </div>
             <Loader />

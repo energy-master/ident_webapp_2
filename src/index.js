@@ -58,8 +58,16 @@ const store = createStore((state = app_data, action) => {
 
 
   //STREAM_SELECTED
+  if (action.type == ('CAMERA_ORDER')) {
 
+    return {
+      ...state,
+      camera_orders: action.payload,
 
+    }
+
+  }
+  //CAMERA_ORDER
   if (action.type == ('STREAM_SELECTED')) {
 
     return {
@@ -460,7 +468,8 @@ const store = createStore((state = app_data, action) => {
 
     current_p.active_bot_number = action.payload['active_bot'];
     current_p.sim_bot_number = action.payload['number_bots'];
-
+    current_p.inner_loop = action.payload['inner_loop'];
+    
     return {
       ...state,
       model_parameters: [current_p]
@@ -519,10 +528,17 @@ const store = createStore((state = app_data, action) => {
     current_p.status = 'Submitted'
     let running = 1;
 
+
+
     return {
       ...state,
       model_parameters: [current_p],
-      sim_running : running
+      sim_running: running,
+      
+      sim_elapsed_time: 0,
+      sim_activity: [],
+      
+      ft_geometry: {}
     }
   }
   if (action.type == ('RUN_FINISHED')) {

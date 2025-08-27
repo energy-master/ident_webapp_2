@@ -68,8 +68,8 @@ const DrawEnergies = (props) => {
     console.log(props.interesting_data);
     let dataPresent = false;
     for (let i = 0; i < props.interesting_data.length; i++) {
-        console.log(props.sim_models_selected["interesting"]);
-        console.log(props.interesting_data[i]['environment']);
+        //console.log(props.sim_models_selected["interesting"]);
+        //console.log(props.interesting_data[i]['environment']);
         if (props.sim_models_selected["interesting"].includes(props.interesting_data[i]['environment'])) {
             
         

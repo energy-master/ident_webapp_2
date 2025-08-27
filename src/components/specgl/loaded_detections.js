@@ -124,7 +124,12 @@ const DrawActiveGeomtry = (props) => {
         // console.log(xgl_iter, ygl_max, ygl_min, delta_xgl_memory)
 
         // points
-        points.push(start_gl_x, ygl_max, gl_zdraw_start, start_gl_x, ygl_min, gl_zdraw_start, end_gl_x, ygl_min, gl_zdraw_start, end_gl_x, ygl_max, gl_zdraw_start);
+        points.push(
+            start_gl_x, ygl_max, gl_zdraw_start,
+            start_gl_x, ygl_min, gl_zdraw_start,
+            end_gl_x, ygl_min, gl_zdraw_start,
+            end_gl_x, ygl_max, gl_zdraw_start,
+            start_gl_x, ygl_max, gl_zdraw_start);
         // console.log(points);
         // console.log(geo.max_memory/1000);
         // console.log(geo.f_max,geo.f_min);
@@ -159,7 +164,9 @@ const DrawActiveGeomtry = (props) => {
         //console.log(`${key}: ${value}`);
         for (const [iter, structure] of Object.entries(value)) {
             //console.log(`${iter}: ${structure}`);
-            buildGeometry(structure, iter);
+            if (props.sim_models_selected["interesting"].includes(structure['model_env'])) {
+                buildGeometry(structure, iter);
+            }
         }
 
     }
@@ -214,7 +221,8 @@ const mapStateToProps = (state) => ({
     sim_elapsed_time: state.sim_elapsed_time,
     file_draw_data: state.file_draw_data,
     spectrogram: state.spectrogram,
-    elapsed_time: state.sim_elapsed_time
+    elapsed_time: state.sim_elapsed_time,
+    sim_models_selected: state.sim_models_selected
 
 })
 
@@ -235,7 +243,7 @@ const PlotGeo = ({
 
     return (
         <mesh ref={ref}>
-            <meshLineGeometry points={points} widthCallback={(p) => p > 0.8 ? 1.5 : 0.4} />
+            <meshLineGeometry points={points} width={1.0} />
             <meshLineMaterial emissive lineWidth={width} color={color} wireframe={false} />
         </mesh>
     )

@@ -21,20 +21,27 @@ import LinearProgress from '@mui/material/LinearProgress';
 function AppProgressBar(props) {
     console.log(props);
     const dispatch = useDispatch();
-    let number_bots = props.model_parameters[0]["sim_bot_number"]
-    let current_bot = props.model_parameters[0]["active_bot_number"]
+    let number_bots = props.model_parameters[0]["sim_bot_number"];
+    let current_bot = props.model_parameters[0]["active_bot_number"];
     console.log(number_bots, current_bot);
     let progress = 0;
+    let inner_progress = 0;
     if (number_bots > 0){
         progress = parseFloat(parseFloat(current_bot) / parseFloat(number_bots)) * 100;
+        inner_progress = parseFloat(props.model_parameters[0]["inner_loop"]);
     }
     console.log(progress);
     let color = 'green';
     return (
         <>
+            {/* <Box display="flex" alignItems="center" p={3}>
+                <Box width="100%" mr={6}>
+                    <LinearProgress variant="determinate" value={inner_progress}  />
+                </Box>
+            </Box> */}
             <Box display="flex" alignItems="center" p={3}>
                 <Box width="100%" mr={6}>
-                    <LinearProgress variant="determinate" value={progress}  />
+                    <LinearProgress variant="determinate" value={progress} />
                 </Box>
             </Box>
         </>

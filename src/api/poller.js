@@ -65,17 +65,21 @@ const PollData = (props) => {
                 if (json_data != 'error') {
                     dispatch({ type: 'STATUS_UPDATE', payload: json_data['status'] });
                     dispatch({ type: 'MAX_ITER_UPDATE', payload: json_data['number_iters'] });
+                    
                     dispatch({
                         type: 'RUN_UPDATE', payload: {
                             'number_bots': json_data['number_bots'],
-                            'active_bot': json_data['last_bot_iter']
+                            'active_bot': json_data['last_bot_iter'],
+                            'inner_loop': 0
                         }
                     });
+
 
                     if (json_data['status'] == "Search Complete") {
                         dispatch({ type: "STOP_POLLING" });
                         dispatch({ type: 'RUN_FINISHED' });
                     }
+
 
                 }
             });

@@ -65,7 +65,8 @@
         "run_title" : "Run IDent",
         "active_bot_number" : 0,
         "sim_bot_number" : 0,
-        "max_iter" : 0
+        "max_iter" : 0,
+        "inner_loop": 0
        
     }],
     "spectrogram" : {
@@ -104,7 +105,16 @@
         "fmax" : 0,
         "fmin" : 0
     }],
-    "sim_models_selected" : {"interesting":[]}
-    
+    "sim_models_selected" : {"interesting":[]},
+
+    "camera_orders": {
+        "order_id" : "",
+        "xpos": 0,
+        "ypos":0,
+        "zpos":500,
+        "xLookAt": 0,
+        "yLookAt": 50,
+        "zLookAt": 0
+    }
 }
     
