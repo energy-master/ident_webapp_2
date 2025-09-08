@@ -47,9 +47,9 @@ const CameraAction = (params) => {
     // get file index in order
     let ordered_list = params.ordered_file_list[params.stream_tag];
     let file_index = 0;
-    console.log(params.stream_tag);
-    console.log(params.currentFileName);
-    console.log(ordered_list);
+    // console.log(params.stream_tag);
+    // console.log(params.currentFileName);
+    // console.log(ordered_list);
     if (params.ordered_file_list.hasOwnProperty(params.stream_tag)) {
         
     
@@ -65,20 +65,24 @@ const CameraAction = (params) => {
     let x_offset = file_index * params.openGl.x_width;
     console.log(x_offset);
     console.log(controls);
-
+    console.log(camera);
     const targetPoint = new Vector3(x_offset+200, 400, 0); // Example target
     
     controls.enabled = false;
-    gsap.to(camera.position, { x: x_offset + 200, y: 400, z: 1200, duration: 1 });
-    gsap.to(camera.lookAt, { x: x_offset + 200, y: 400, z: 0, duration: 0.5 });
+    gsap.to(camera.position, { x: x_offset + 200, y: 400, z: 1800, duration: 1 });
+    gsap.to(camera.lookAt, { x: x_offset + 200, y: 400, z: 0, duration: 1.5 });
+    //camera.lookAt(x_offset + 200, 400,  0);
+    controls.target = targetPoint;
     controls.enabled = true;
     controls.update();
 
+    console.log(controls);
+    console.log(camera);
    
 
     return (
         <>
-            <OrbitControls target={targetPoint} position={[x_offset + 200, 400, 1200]} dampingFactor={0.05} />
+            {/* <OrbitControls target={targetPoint} position={[x_offset + 200, 400, 1200]} dampingFactor={0.05} /> */}
         </>
     )
 

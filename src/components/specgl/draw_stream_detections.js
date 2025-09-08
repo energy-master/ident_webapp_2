@@ -75,12 +75,19 @@ const DrawStreamDetection = (props) => {
         // // console.log(gl_delta_x);
 
         let gl_delta_x = 0;
-        gl_delta_x = ((time_s / props.file_data[props.selected_stream][filename].elapsed_time)) * props.gl_data.x_width;
-        console.log(time_s, props.file_data[props.selected_stream][filename].elapsed_time,gl_delta_x)
+        console.log(filename);
+        try {
+            gl_delta_x = ((time_s / props.file_data[props.selected_stream][filename].elapsed_time)) * props.gl_data.x_width;
+        }
+        catch (error) {
+            gl_delta_x = 0;
+            console.log(error);
+        }
+        //console.log(time_s, props.file_data[props.selected_stream][filename].elapsed_time,gl_delta_x)
         return (gl_delta_x);
 
     }
-
+    console.log(props.file_data);
     const buildGeometry = (detection) => {
         console.log(detection);
         let points = [];

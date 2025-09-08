@@ -30,6 +30,7 @@ const CameraOrders = (params) => {
     controls.enabled = false;
     gsap.to(camera.position, { x: params.orders['xpos'], y: params.orders['ypos'], z: params.orders['zpos'], duration: 1 });
     gsap.to(camera.lookAt, { x: params.orders['xLookAt'], y: params.orders['yLookAt'], z:0, duration: 0.5 });
+    controls.target = targetPoint;
     controls.enabled = true;
     controls.update();
 
@@ -38,7 +39,7 @@ const CameraOrders = (params) => {
 
     return (
         <>
-             <OrbitControls target={targetPoint} position={[params.orders['xpos'], params.orders['ypos'], params.orders['zpos']]} dampingFactor={0.05} /> 
+             {/* <OrbitControls target={targetPoint} position={[params.orders['xpos'], params.orders['ypos'], params.orders['zpos']]} dampingFactor={0.05} />  */}
         </>
     )
 

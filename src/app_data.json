@@ -44,7 +44,7 @@
         "root_acoustic_stream_path" : "/media/marlin/Elements41/marlin_live/streams/"
 
     },
-    "openGl" : {"x_width" : 1500, "y_width" : 200, "number_transitions" : 10000 },
+    "openGl" : {"x_width" : 1500, "y_width" : 200,"spec_y":390, "number_transitions" : 10000 },
     "polling_state" : {"running" : false, "job_sent" : false},
     "results_summary" : [],
     "plot_activity_data": {"labels" : [], "datasets": {}},
@@ -106,8 +106,8 @@
         "fmin" : 0
     }],
     "sim_models_selected" : {"interesting":[]},
-
     "camera_orders": {
+        "order_type" : "",
         "order_id" : "",
         "xpos": 0,
         "ypos":0,
@@ -115,6 +115,15 @@
         "xLookAt": 0,
         "yLookAt": 50,
         "zLookAt": 0
-    }
+    },
+    "windows_show" : [
+        {
+            "id" : 0,
+            "Search":false,
+            "Connect":true,
+            "Detections":false,
+            "Log" : false
+        }
+    ]
 }
     

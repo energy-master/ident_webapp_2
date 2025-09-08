@@ -26,15 +26,20 @@ import ConnectedDrawEnergies from './draw_energies';
 import ConnectedLogger from './logging';
 import ConnectedGLHud from './hud';
 import ConnectedCameraAction from '../camera/camera';
-
+import Particles from './particles';
 import ConnectedStreamImages from './spec_img';
 import ConnectedDrawStreamDetection from './draw_stream_detections';
 import Button from '@mui/material/Button';
 import ConnectedCameraOrders from '../camera/camera_order';
+import { Vector3 } from 'three';
 
+import { useLoader } from '@react-three/fiber';
+
+
+import { TextureLoader, Triangle } from 'three';
 extend({ MeshLineGeometry, MeshLineMaterial })
 
-const SpecGL = ({ }) => {
+const SpecGL = (params) => {
     const dispatch = useDispatch();
     const homeClick = () => {
         console.log('Home view button clicked!');
@@ -42,8 +47,41 @@ const SpecGL = ({ }) => {
         let order_id = Math.random() * 999999;
         dispatch({
             type: 'CAMERA_ORDER', payload: {
+                'order_type': 'fixed',
+                'order_id': order_id,
+                'xpos': -1000, 'ypos': 400, 'zpos': 4000,
+                'xLookAt': 500, 'yLookAt': 400, 'zLookAt': 0
+            }
+        })
+
+
+    };
+
+    const handleZoomIn = () => {
+        // Logic to zoom in the camera
+        console.log('Home view button clicked!');
+        // Add other logic here
+        let order_id = Math.random() * 999999;
+        dispatch({
+            type: 'CAMERA_ORDER', payload: {
+                'order_type' : 'zoom_in',
                 'order_id': order_id,
                 'xpos': 0, 'ypos': 400, 'zpos': 1000,
+                'xLookAt': 0, 'yLookAt': 400, 'zLookAt': 0
+            }
+        })
+    };
+
+    const liveClick = () => {
+        console.log('Home view button clicked!');
+        // Add other logic here
+        let order_id = Math.random() * 999999;
+
+        dispatch({
+            type: 'CAMERA_ORDER', payload: {
+                'order_type': 'live',
+                'order_id': order_id,
+                'xpos': 0, 'ypos': 400, 'zpos': 1500,
                 'xLookAt': 0, 'yLookAt': 400, 'zLookAt': 0
             }
         })
@@ -51,74 +89,89 @@ const SpecGL = ({ }) => {
 
     };
 
-    const handleClick = () => {
-        
-    };
-
-    const { autoRotate, mipmapBlur, luminanceThreshold, luminanceSmoothing, intensity } = useControls({
-        autoRotate: !0,
-        mipmapBlur: !0,
-        luminanceThreshold: { value: 0.0, min: 0, max: 2, step: 0.01 },
-        luminanceSmoothing: { value: 0.025, min: 0, max: 1, step: 0.001 },
-        intensity: { value: 0.6, min: 0, max: 10, step: 0.01 }
-    })
-    const handleZoomIn = () => {
-        // Logic to zoom in the camera
-    };
+    // const { autoRotate, mipmapBlur, luminanceThreshold, luminanceSmoothing, intensity } = useControls({
+    //     autoRotate: !0,
+    //     mipmapBlur: !0,
+    //     luminanceThreshold: { value: 0.0, min: 0, max: 2, step: 0.01 },
+    //     luminanceSmoothing: { value: 0.025, min: 0, max: 1, step: 0.001 },
+    //     intensity: { value: 0.6, min: 0, max: 10, step: 0.01 }
+    // })
+    
     return (
         <>
         <Canvas
             dpr={Math.min(window.devicePixelRatio, 2)}
             camera={{
                 fov: 40,
-                position: [0, 50, 1000],
+                position: [-1300, 300, 1500],
                 near: 0.1,
                 far: 10000
             }}
-
-        >
             
+
+            >
+                {/* <ambientLight intensity={5.5} color="white" /> */}
+                {/* <spotLight position={[0, 0, -1000]} angle={Math.PI / 4} penumbra={1.5} intensity={10} color="white" castShadow /> */}
+                <directionalLight position={[0, 10, 5000]} intensity={10} color="green" castShadow />
+                {/* <Particles 
+                    xsize={1000}
+                    ysize={1000}
+                    zsize={2}
+
+                /> */}
         <color attach="background" args={['black']}/>
         {/* <FirstPersonControls movementSpeed={3}/> */}
-        
-                <OrbitControls
-                    dampingFactor={0.05}
-                    makeDefault
-                     />
-        <EffectComposer>
+            
+        <OrbitControls
+                // position={[params.orders['xpos'], params.orders['ypos'], params.orders['zpos']]}
+                target={[-1300, 300, 0]}
+                dampingFactor={0.55}
+                makeDefault            
+        />
+        {/* <EffectComposer>
             <Bloom
                 mipmapBlur={mipmapBlur}
                 luminanceThreshold={luminanceThreshold}
                 luminanceSmoothing={luminanceSmoothing}
                 intensity={intensity}
             />
-        </EffectComposer>
-                <ConnectedCameraAction />
-                <ConnectedCameraOrders />
-                
-            /* Scene */
+        </EffectComposer> */}
+        <ConnectedCameraAction />
+        <ConnectedCameraOrders />
         
-                {/* <ConnectedPlotLines /> */}
-                {/* <Suspense fallback={null}>
-                    <ConnectedSpectrogramMesh />
-                    </Suspense> */}
+        /* Scene */
+        
+        {/* <ConnectedPlotLines /> */}
+        {/* <Suspense fallback={null}>
+            <ConnectedSpectrogramMesh />
+            </Suspense> */}
         <ConnectedPlotActiveGeometry />
         <ConnectedDrawActiveGeometry />
         <ConnectedDrawStreamDetection />
         <ConnectedDrawEnergies />
-        <ConnectedLogger />
+        {/* <ConnectedLogger /> */}
         <Text
-                            position={[-600, 0, -10]}
+                            position={[-1300, 300, 0]}
                             scale={[40, 40, 10]}
                             color="red" // default
                             anchorX="left" // default
                             anchorY="middle" // default
                         >
                             M A R L I N  AI
-        </Text>
-                <Suspense fallback={null}>
-                    <ConnectedStreamImages />
-                </Suspense>
+                </Text>
+                {/* <ImageBox
+
+                    imgPath={"https://marlin-network.hopto.org/marlin_live/rsa_green_logo.png"}
+                    xPos={-600}
+                    yPos={-40}
+                    zPos={10}
+                    width={200}
+                    height={100}
+
+                /> */}
+        <Suspense fallback={null}>
+            <ConnectedStreamImages />
+        </Suspense>
                 
         {/* <ConnectedGLHud />  */}
             
@@ -126,14 +179,14 @@ const SpecGL = ({ }) => {
             <div style={{ position: 'absolute', bottom: 10, left: 10 }}>
                 {/* <button onClick={handleZoomIn}>Zoom In</button>
                 <button>Reset Camera</button> */}
-                <Button variant="outlined" onClick={homeClick}>Reset Camera</Button>
-                <Button variant="outlined">Live</Button>
+                <Button variant="outlined"  color="success" onClick={homeClick}>Reset Camera</Button>
+                <Button variant="outlined" color="success" onClick={liveClick}>Live</Button>
             </div>
             <div style={{ position: 'absolute', bottom: 10, left: '20%' }}>
                 {/* <button onClick={handleZoomIn}>Zoom In</button>
                 <button>Reset Camera</button> */}
-                <Button variant="outlined" style={{ width: '100px' }} onClick={handleZoomIn}>In +</Button>
-                <Button variant="outlined" style={{ width: '100px' }}>Out -</Button>
+                {/* <Button variant="outlined" style={{ width: '100px' }} onClick={handleZoomIn}>In +</Button>
+                <Button variant="outlined" style={{ width: '100px' }} onClick={handleZoomIn}>Out -</Button> */}
             </div>
             <Loader />
         {/* <Loader
@@ -151,7 +204,47 @@ const SpecGL = ({ }) => {
     )
 }
 
-export default SpecGL;
+
+
+
+// export default SpecGL;
+
+const mapStateToProps = (state) => ({
+
+    orders : state.camera_orders
+
+})
+
+
+const ConnectedSpecGL = connect(mapStateToProps)(SpecGL);
+export default ConnectedSpecGL;
+
+
+function ImageBox({
+    imgPath,
+    xPos,
+    yPos,
+    zPos,
+    width,
+    height
+}) {
+
+
+    const texture = useLoader(TextureLoader, imgPath);
+
+
+    return (
+
+        <mesh position={[xPos, yPos, zPos]}>
+            <planeGeometry args={[width, height]} />
+            <meshBasicMaterial map={texture} />
+        </mesh>
+
+
+
+
+    );
+}
 
 
 

@@ -63,9 +63,9 @@ const DrawActiveGeomtry = (props) => {
                 return 0;
             }
         }
-        let f_y_ratio = props.gl_data.y_width / fmax;
+        let f_y_ratio = props.gl_data.spec_y / fmax;
        
-        let y_zero = 0 - (props.gl_data.y_width / 2);
+        let y_zero = 0 - (props.gl_data.spec_y / 2);
         y_zero = gl_ydraw_start;
         // console.log(f_y_ratio);
         let gly = y_zero + (frequency * f_y_ratio);
@@ -75,7 +75,7 @@ const DrawActiveGeomtry = (props) => {
 
     const get_x_from_iter = (number_iter) => {
         // console.log(props.model_parameters);
-        console.log(props.model_parameters.max_iter);
+       // console.log(props.model_parameters.max_iter);
         let start_x = 0 - (props.gl_data.x_width / 2);
         start_x = gl_xdraw_start;
         let delta_x = props.gl_data.x_width / props.model_parameters.max_iter;
@@ -90,7 +90,7 @@ const DrawActiveGeomtry = (props) => {
         // iter delta x
         // console.log(props.model_parameters.max_iter);
         let delta_x = props.gl_data.x_width / props.model_parameters.max_iter;
-        console.log(delta_x);
+        //og(delta_x);
         // console.log(time_s, props.model_parameters.delta_t);
         let number_iters = (time_s / props.model_parameters.delta_t);
         // console.log(number_iters);
@@ -104,13 +104,13 @@ const DrawActiveGeomtry = (props) => {
 
 
     const buildGeometry = (geo, iter) => {
-        console.log(geo);
+       // console.log(geo);
         let points = [];
 
         let geom_points = [];
 
         // let xgl_iter = get_x_from_iter(iter);
-        console.log(geo.active_time_s, total_time_s, gl_draw_width)
+       // console.log(geo.active_time_s, total_time_s, gl_draw_width)
         let start_gl_x = gl_xdraw_start + (parseFloat(parseFloat(geo.active_time_s) / parseFloat(total_time_s)) * gl_draw_width);
         let end_gl_x = gl_xdraw_start + (parseFloat(parseFloat(geo.active_time_s - (geo.max_memory / 1000)) / parseFloat(total_time_s)) * gl_draw_width);
 
@@ -159,7 +159,7 @@ const DrawActiveGeomtry = (props) => {
             return;
         }
     }
-    console.log(props.active_geometry);
+    //console.log(props.active_geometry);
     for (const [key, value] of Object.entries(props.active_geometry)) {
         //console.log(`${key}: ${value}`);
         for (const [iter, structure] of Object.entries(value)) {
@@ -171,7 +171,7 @@ const DrawActiveGeomtry = (props) => {
 
     }
 
-    console.log(dataSetArray);
+    //console.log(dataSetArray);
     if (dataSetArray.length > 0) {
         dataPresent = true;
     }

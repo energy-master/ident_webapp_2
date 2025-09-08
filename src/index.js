@@ -5,10 +5,10 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { Provider } from 'react-redux';
 
-
+import { useLoader } from '@react-three/fiber';
 import { updateStore } from './store/configureStore';
 
-
+import { TextureLoader, Triangle } from 'three';
 /* IDent Components */
 
 import NavBar from './components/nav';
@@ -17,12 +17,13 @@ import IDentSpeedMenu from './components/speed_menu/speed_menu';
 import DataPanel from './components/data_panel/data_panel';
 import PlotterPanel from './components/plotter_panel/plotter_panel';
 import ConnectedPollData from './api/poller';
-import Windows from './components/windows/windows';
+import ConnectedWindowGUI from './components/windows/windows';
 import ConnectedBuildWorld from './components/build_world/build_world';
-
+import Particles from './components/specgl/particles';
 // import { configureStore } from 'react-redux';
 import ResultsPanel from './components/results_panel/results_panel';
 import { createStore } from 'redux';
+import { random } from 'gsap';
 
 function addFilename(text) {
   return {
@@ -60,11 +61,16 @@ const store = createStore((state = app_data, action) => {
   //STREAM_SELECTED
   if (action.type == ('CAMERA_ORDER')) {
 
-    return {
-      ...state,
-      camera_orders: action.payload,
 
+    console.log(action.payload['order_type']);
+    if (action.payload['order_type'] = 'fixed'){
+      return {
+        ...state,
+        camera_orders: action.payload,
+
+      }
     }
+    
 
   }
   //CAMERA_ORDER
@@ -77,8 +83,25 @@ const store = createStore((state = app_data, action) => {
     }
 
   }
-  // "sim_models" : [],
-  //   "sim_activity" : []
+
+  if (action.type == ('WINDOW_SELECT')) {
+    
+    let old_show = state.windows_show[0];
+    console.log(old_show);
+    console.log(action.payload);
+    old_show[action.payload] = old_show[action.payload] ? false : true;
+    old_show["id"] = Math.random() * 999999;
+    console.log(action.payload)
+    console.log(old_show);
+    let r = [old_show];
+
+    return {
+        ...state,
+        windows_show : [old_show],
+    }
+
+  }
+  
   if (action.type == ('SIM_MODELS_UPDATE')) {
 
     return {
@@ -581,12 +604,13 @@ root.render(
     <NavBar appName="IDent Live"  />
     
     <Provider store={store}>
+      
       <ConnectedPollData />
       <SpecPanel />
-      <Windows />
+      <ConnectedWindowGUI />
 
       {/* <PlotterPanel /> */}
-      {/* <IDentSpeedMenu /> */}
+      <IDentSpeedMenu /> 
 
 
       {/* <DataPanel /> */}
@@ -596,7 +620,6 @@ root.render(
 
   </React.StrictMode>
 );
-
 
 
 // setTimeout(() => {

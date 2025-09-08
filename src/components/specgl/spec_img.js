@@ -16,8 +16,8 @@ function StreamImages(params)  {
 
     const dispatch = useDispatch();
 
-    console.log(params.current_filename);
-    console.log(params.selected_stream[0]);
+    // console.log(params.current_filename);
+    // console.log(params.selected_stream[0]);
     if (params.selected_stream.length < 1){
         return;
     }
@@ -25,7 +25,7 @@ function StreamImages(params)  {
         return;
     }
 
-    console.log("rendering images");
+    // console.log("rendering images");
     let stream_src = true;
     let imgPath = '';
     if (params.selected_stream[0] == 'Saved Files') {
@@ -50,10 +50,13 @@ function StreamImages(params)  {
     let f_draw_data = {}
 
     if (params.ordered_stream_files.hasOwnProperty(params.selected_stream[0])) {
-        for (let i = 0; i < params.ordered_stream_files[params.selected_stream[0]].length; i++) {
+        //console.log(params.ordered_stream_files[params.selected_stream[0]].length);
         
-            let gl_w = stream_src ? params.openGl.x_width : params.openGl.x_width;
+        for (let i = 0; i < Math.min(params.ordered_stream_files[params.selected_stream[0]].length, 10); i++) {
+        //for (let i = params.ordered_stream_files[params.selected_stream[0]].length-1; i > -1; i--) {
 
+            let gl_w = stream_src ? params.openGl.x_width : params.openGl.x_width;
+            
             let instance = {
                 'imgPath': imgPath + '/' + params.ordered_stream_files[params.selected_stream[0]][i].file_root + "_spec.jpg",
                 'xPos': start_gl_x,
@@ -93,7 +96,7 @@ function StreamImages(params)  {
         dispatch({ type: "FILES_DRAWN", payload: f_draw_data });
     }
 
-
+    
 
     // console.log(stream_render_data);
     return (

@@ -10,60 +10,159 @@ import { connect } from 'react-redux';
 import '@fontsource/roboto/300.css';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
+import Button from '@mui/material/Button';
+import FileDownloadIcon from '@mui/icons-material/FileDownload';
 import { propsStateInitializer } from '@mui/x-data-grid/internals';
 import { gsap } from "gsap"; 
 import { useThree } from '@react-three/fiber';
 
+const renderDetailsButton = (params) => {
+    return (
+        <strong>
+            <Button
+                variant="contained"
+                color="primary"
+                size="small"
+                style={{ marginLeft: 16 }}
+                onClick={() => {
+                    alert(params.row.col1);
+                }}
+            >
+                More Info
+            </Button>
+        </strong>
+    )
+}
 
-let columns = [
-    
-    {
-        field: 'name', headerName: 'Filename', width: 300,
-        editable: false,
-        flex: 1,
-        headerClassName: 'dataHdr',
-        renderCell: (params) => (
-            <Typography variant="overline" sx={{ color: 'white' }}>
-                {params.value}
-            </Typography>
-        ),
-    },
-    {
-        field: 'time', headerName: 'Time', width: 300,
-        editable: false,
-        flex: 1,
-        headerClassName: 'dataHdr',
-        renderCell: (params) => (
-            <Typography variant="overline" sx={{ color: 'white' }}>
-                {params.value}
-            </Typography>
-        ),
-    },
-    {
-        field: 'detection', headerName: 'Detection', width: 300,
-        editable: false,
-        flex: 1,
-        headerClassName: 'dataHdr',
-         renderCell: (params) => (
-                    <Typography variant="overline" sx={{ color:'white' }}>
-                                {params.value}
-                    </Typography>
-                ),
-    }
-
-
-
-];
 
 let last_stream_location = "";
+// const renderModelDownloadButton = () => {
+//     // console.log(props.model_parameters[0].percentage_complete);
+//     return (
+//         <strong>
+//             {(props.model_parameters[0].status == "Search Complete" || props.model_parameters[0].status == "Building Report") ?
+//                 <Button
+//                     variant="contained"
+//                     color="primary"
+//                     size="small"
+//                     style={{ marginLeft: 16, fontWeight: 'bold' }}
+//                     onClick={() => {
+//                         console.log(props)
+//                         let dl_path = '/marlin_live_data/dump/out/' + props.model_parameters[0].model_id + '.zip';
+//                         const link = document.createElement("a");
+//                         link.download = props.model_parameters[0].model_id + '.zip';
+//                         link.href = dl_path;
+//                         link.click();
 
+//                     }}
+//                 >
+//                     Download
+//                 </Button> : null
+
+
+//             }
+//         </strong>
+//     )
+// }
 function StreamFiles(props) {
 
-    
-    
+
+    let columns = [
+
+        {
+            field: 'name', headerName: 'Filename', width: 300,
+            editable: false,
+            flex: 3,
+            headerClassName: 'dataHdr',
+            // renderCell: (params) => (
+            //     <Typography variant="overline" sx={{ color: 'white' }}>
+            //         {params.value}
+            //     </Typography>
+            // ),
+            renderCell: (params) => (
+
+                <Button
+                    variant="contained"
+                    color="primary"
+                    size="small"
+                    style={{ marginLeft: 16 }}
+                    onClick={() => {
+
+                        triggerFile(params.value);
+
+                    }}
+                >
+                    {params.value}
+                </Button>
+            ),
+        },
+        {
+            field: 'download',
+            headerName: 'Download',
+            width: 200,
+            flex: 2,
+            disableClickEventBubbling: true,
+            headerClassName: 'dataHdr',
+            renderCell: (params) => (
+
+                <Button
+                    variant="contained"
+                    color="primary"
+                    size="small"
+                    style={{ marginLeft: 16 }}
+                    onClick={() => {
+
+                        let dl_path = params.value;
+                        const link = document.createElement("a");
+                        link.download = dl_path;
+                        link.href = dl_path;
+                        link.click();
+
+                    }}
+                    startIcon={<FileDownloadIcon />}
+                >
+                    
+                </Button>
+            ),
+
+
+        }
+        // {
+        //     field: 'time', headerName: 'Time', width: 300,
+        //     editable: false,
+        //     flex: 1,
+        //     headerClassName: 'dataHdr',
+        //     renderCell: (params) => (
+        //         <Typography variant="overline" sx={{ color: 'white' }}>
+        //             {params.value}
+        //         </Typography>
+        //     ),
+        // },
+        // {
+        //     field: 'detection', headerName: 'Detection', width: 300,
+        //     editable: false,
+        //     flex: 1,
+        //     headerClassName: 'dataHdr',
+        //     renderCell: (params) => (
+        //         <Typography variant="overline" sx={{ color: 'white' }}>
+        //             {params.value}
+        //         </Typography>
+        //     ),
+        // }
+
+
+
+    ];
+
+   
+  
     console.log(props.detections);
     const dispatch = useDispatch();
 
+    const triggerFile = (file_name) => {
+        dispatch({ type: "FILE_SELECTED", payload: { 'name': file_name, 'timestamp': "", 'active_stream': props.selected_stream[0] } });
+
+    }
     //let rows = props.model_list;
     let stream_id_data = [];
     let rows = props.stream_files;
@@ -83,10 +182,12 @@ function StreamFiles(props) {
         // grab model list
            
         let url = "https://marlin-network.hopto.org/cgi-bin/get_data_streams.php";
-        let file_url = "/media/marlin/Elements41/marlin_live/streams/"+ selected_stream_tag;
+        let file_url = "/media/marlin/Elements41/marlin_live/streams/" + selected_stream_tag;
+        let file_http = "https://marlin-network.hopto.org/marlin_live/streams/" + selected_stream_tag;
             if (selected_stream_tag == "Saved Files") {
                 url = "https://marlin-network.hopto.org/cgi-bin/get_saved_audio.php";
                 file_url = "/media/marlin/Elements41/marlin_live";
+                file_http = "https://marlin-network.hopto.org/marlin_live";
                 selected_stream_tag = "saved_files";
             }
 
@@ -119,7 +220,7 @@ function StreamFiles(props) {
 
 
                     }
-                    buildRows(file_data, props.detections[selected_stream_tag]);
+                    buildRows(file_data, props.detections[selected_stream_tag], file_http);
                 }
                 else {
                     for (let j = 0; j < stream_data['streams'][0]['saved_files'].length; j++){
@@ -133,7 +234,7 @@ function StreamFiles(props) {
                         console.log(file_data);
                     }
                    
-                    buildRows(file_data, []);
+                    buildRows(file_data, [], file_http);
                 }
 
                 // console.log(file_list);
@@ -145,12 +246,12 @@ function StreamFiles(props) {
 
     }
 
-    const buildRows = (data, detections) => {
+    const buildRows = (data, detections, file_http) => {
         
         rows = [];
         console.log(detections);
         for (let i = 0; i < (data.length); i++) {
-            console.log(data[i]);
+           // console.log(data[i]);
 
             // detection logic
             let root_fn = data[i]['filename'].split('.')[0];
@@ -168,11 +269,13 @@ function StreamFiles(props) {
 
                 "id": i,
                 "name": data[i]['filename'],
-                "time": data[i]['datetime']['date'],
-                "detection" : detection_present ? `[${number_detections} detection(s).]`:''
-                
+                // "time": data[i]['datetime']['date'],
+                // "detection": detection_present ? `[${number_detections} detection(s).]` : '',
+                "download": file_http + "/" + data[i]['filename']
+               
         
             });
+            console.log(rows);
 
 
         }
@@ -187,10 +290,16 @@ function StreamFiles(props) {
         event, // MuiEvent<React.MouseEvent<HTMLElement>>
         details, // GridCallbackDetails
     ) => {
-
+        console.log(event);
+        console.log(details);
         console.log(params);
-        dispatch({ type: "FILE_SELECTED", payload: { 'name': params['row']['name'], 'timestamp': params['row']['time'], 'active_stream' : props.selected_stream[0] } } );
 
+
+        // if (event.target["data-field"] == "name") {
+            dispatch({ type: "FILE_SELECTED", payload: { 'name': params['row']['name'], 'timestamp': params['row']['time'], 'active_stream': props.selected_stream[0] } });
+
+       // }
+        
         // gsap.to(camera.position, { x: 10, y: 5, z: 0, duration: 1 });
         // gsap.to(camera.rotation, { x: Math.PI / 4, duration: 1 });
 
@@ -203,6 +312,7 @@ function StreamFiles(props) {
         // console.log(props.selected_stream);
         selected_stream_tag = props.selected_stream[0];
         // console.log(selected_stream_tag);
+
         getStreamFiles();
 
     }
@@ -259,7 +369,7 @@ function StreamFiles(props) {
                         bottom: [rows[0]],
                     }}
                     //checkboxSelection
-                    onRowClick={modelRow_clicked} // here
+                    //onRowClick={modelRow_clicked} // here
                 />
                 {/* </ThemeProvider> */}
             </Stack>

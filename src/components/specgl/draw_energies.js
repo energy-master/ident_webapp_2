@@ -18,7 +18,7 @@ extend({ MeshLineGeometry, MeshLineMaterial })
 
 const DrawEnergies = (props) => {
 
-    console.log("energy drawing");
+  //  console.log("energy drawing");
     //console.log(props.model_parameters.fileName);
 
     if (props.current_fileName == "No Active File"){
