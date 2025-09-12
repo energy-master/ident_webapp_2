@@ -53,7 +53,7 @@ const DrawEnergies = (props) => {
     }
     console.log(props.file_draw_data);
     let gl_xdraw_start = props.file_draw_data[props.current_fileName]['xpos'];
-    let gl_ydraw_start = props.file_draw_data[props.current_fileName]['ypos'];
+    let gl_ydraw_start = props.file_draw_data[props.current_fileName]['ypos']-50;
     let gl_zdraw_start = props.file_draw_data[props.current_fileName]['zpos'];
     let gl_draw_width = props.file_draw_data[props.current_fileName]['width'];
     let gl_draw_height = props.file_draw_data[props.current_fileName]['height'];

@@ -10,20 +10,17 @@ const NavBar = ({
 }) => {
     return (
        
-        
         <div className='navbar'>
             <div className='marlin_bar'>
                 <span className='marlin_title'>MARLIN AI | LIVE</span>
             </div>
            
-
             <div className='logo'>
                {/* <img src={logo}  /> */}
-                <span className='appName'> {AppName} <span className='subAppName'>[v0.5]</span></span> 
+                <span className='appName'>  <span className='subAppName'></span></span> 
             </div>
 
-        </div>
-        
+        </div> 
     );
 }
 

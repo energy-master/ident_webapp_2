@@ -13,16 +13,18 @@ import { MeshLineGeometry, MeshLineMaterial, raycast } from 'meshline'
 extend({ MeshLineGeometry, MeshLineMaterial })
 
 function StreamImages(params)  {
+    console.log("streaming images");
+    // console.log(params.current_filename);
 
     const dispatch = useDispatch();
 
-    // console.log(params.current_filename);
+    console.log(params.current_filename);
     // console.log(params.selected_stream[0]);
     if (params.selected_stream.length < 1){
         return;
     }
     if (params.stream_data_loaded == false){
-        return;
+        //return;
     }
 
     // console.log("rendering images");
@@ -41,7 +43,9 @@ function StreamImages(params)  {
     // console.log(params.openGl);
     let stream_render_data = [];
     // let start_gl_x = 0 - (parseFloat(params.openGl.x_width) / 2);
+
     let start_gl_x = 0;
+
     let y_base = (parseFloat(params.openGl.y_width)) + 20;
     y_base = 300 + 20;
     // console.log(params.ordered_stream_files);
@@ -49,14 +53,32 @@ function StreamImages(params)  {
 
     let f_draw_data = {}
 
+   
+
     if (params.ordered_stream_files.hasOwnProperty(params.selected_stream[0])) {
+        let start_stream_idx = 0;
+        let end_stream_idx = 20;
+        for (let z = 0; z < params.ordered_stream_files[params.selected_stream[0]].length; z++){
+            if (params.ordered_stream_files[params.selected_stream[0]][z]["filename"] == params.current_filename) {
+                
+                start_stream_idx = Math.max(0, (z - 12));
+                end_stream_idx = Math.min(params.ordered_stream_files[params.selected_stream[0]].length - 1, z + 12)
+                start_gl_x = (params.openGl.x_width) * start_stream_idx;
+            }
+        }
+        
+        console.log(start_gl_x);
+        console.log(start_stream_idx);
+        console.log(params.ordered_stream_files[params.selected_stream[0]]);
+        console.log(end_stream_idx);
         //console.log(params.ordered_stream_files[params.selected_stream[0]].length);
         
-        for (let i = 0; i < Math.min(params.ordered_stream_files[params.selected_stream[0]].length, 10); i++) {
+        //for (let i = 0; i < Math.min(params.ordered_stream_files[params.selected_stream[0]].length, 20); i++) {
         //for (let i = params.ordered_stream_files[params.selected_stream[0]].length-1; i > -1; i--) {
+        for (let i = start_stream_idx; i < end_stream_idx; i++) {
 
             let gl_w = stream_src ? params.openGl.x_width : params.openGl.x_width;
-            
+           // console.log(imgPath + '/' + params.ordered_stream_files[params.selected_stream[0]][i].file_root + "_spec.jpg")
             let instance = {
                 'imgPath': imgPath + '/' + params.ordered_stream_files[params.selected_stream[0]][i].file_root + "_spec.jpg",
                 'xPos': start_gl_x,
@@ -218,11 +240,11 @@ function ImageFrame({
     const ref = useRef();
 
     return (
-
-        <mesh ref={ref}>
-            <meshLineGeometry points={points} widthCallback={(p) => p > 0.8 ? 1.5 : 0.4} />
-            <meshLineMaterial emissive lineWidth={2} color={color} wireframe={true} />
-        </mesh>
+        <></>
+        // <mesh ref={ref}>
+        //     <meshLineGeometry points={points} widthCallback={(p) => p > 0.8 ? 1.5 : 0.4} />
+        //     <meshLineMaterial emissive lineWidth={2} color={color} wireframe={true} />
+        // </mesh>
 
 
 

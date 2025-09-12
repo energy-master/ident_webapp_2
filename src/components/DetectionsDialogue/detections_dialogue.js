@@ -32,7 +32,7 @@ let columns = [
     {
         field: 'detection_file', headerName: 'File', width: 300,
         editable: false,
-        flex: 1,
+        flex: 0,
         headerClassName: 'dataHdr',
          renderCell: (params) => (
                     <Typography variant="overline" sx={{ color:'white' }}>
@@ -50,6 +50,17 @@ let columns = [
                                 {params.value}
                     </Typography>
                 ),
+    },
+    {
+        field: 'file_full', headerName: 'File', width: 300,
+        editable: false,
+        flex: 1,
+        headerClassName: 'dataHdr',
+        renderCell: (params) => (
+            <Typography variant="overline" sx={{ color: 'white' }}>
+                {params.value}
+            </Typography>
+        ),
     },
 
 
@@ -89,7 +100,8 @@ function DetectionsDialogue(props) {
                 "id": i,
                 "detection_model": data[i]['model'],
                 "detection_file": data[i]['file_root'],
-                "detection_time": data[i]['timestamp']
+                "detection_time": data[i]['timestamp'],
+                "file_full": data[i]['detections'][0]["body"]["filename"]
               
             });
 
@@ -107,11 +119,11 @@ function DetectionsDialogue(props) {
         details, // GridCallbackDetails
     ) => {
 
-        console.log(params);
+        //console.log(params);
         if ((params['row']['detection_model'] == "No Data") || (params['row']['detection_model'] == "No Data in Stream")){
             return;
         }
-        dispatch({ type: "FILE_SELECTED", payload: { 'name': params['row']['detection_file'], 'timestamp': params['row']['timestamp'], 'active_stream' : params.selected_stream } });
+        dispatch({ type: "FILE_SELECTED", payload: { 'name': params['row']['file_full'], 'timestamp': params['row']['timestamp'], 'active_stream' : params.selected_stream } });
 
         //dispatch({ type: "FILE_SELECTED", payload: { 'name': params['row']['name'], 'timestamp': params['row']['time'] } });
 
@@ -129,7 +141,7 @@ function DetectionsDialogue(props) {
             console.log("looking now");
             let valid_decisions = [];
             for (let i = 0; i < props.detections[selected_stream_tag].length; i++){
-                console.log(props.detections[selected_stream_tag][i]['model'], props.view_models["interesting"]);
+               // console.log(props.detections[selected_stream_tag][i]['model'], props.view_models["interesting"]);
                 if (props.view_models["interesting"].includes(props.detections[selected_stream_tag][i]['model'])) {
                     console.log("hit");
                     valid_decisions.push(props.detections[selected_stream_tag][i]);

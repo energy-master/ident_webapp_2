@@ -169,6 +169,12 @@ const store = createStore((state = app_data, action) => {
     }
 
   }
+
+
+  //GO_LIVE
+  if (action.type == ('GO_LIVE')) {
+    console.log("going live");
+  }
   if (action.type == ('FILE_SELECTED')) {
 
     let current_p = state.acousticFileData;
@@ -179,7 +185,7 @@ const store = createStore((state = app_data, action) => {
     if (state.selected_stream[0] == 'Saved Files') {
       console.log('clearing order');
       ordered_f = state.ordered_stream_files;
-      console.log(ordered_f);
+      //console.log(ordered_f);
       ordered_f["Saved Files"] = [];
       ordered_f["Saved Files"].push({
         "filename": action.payload["name"],

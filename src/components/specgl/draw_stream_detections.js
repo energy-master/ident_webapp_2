@@ -75,21 +75,21 @@ const DrawStreamDetection = (props) => {
         // // console.log(gl_delta_x);
 
         let gl_delta_x = 0;
-        console.log(filename);
+       // console.log(filename);
         try {
             gl_delta_x = ((time_s / props.file_data[props.selected_stream][filename].elapsed_time)) * props.gl_data.x_width;
         }
         catch (error) {
             gl_delta_x = 0;
-            console.log(error);
+           // console.log(error);
         }
         //console.log(time_s, props.file_data[props.selected_stream][filename].elapsed_time,gl_delta_x)
         return (gl_delta_x);
 
     }
-    console.log(props.file_data);
+   // console.log(props.file_data);
     const buildGeometry = (detection) => {
-        console.log(detection);
+        //console.log(detection);
         let points = [];
         
         let geom_points = [];
@@ -99,25 +99,25 @@ const DrawStreamDetection = (props) => {
         let x_0 = 0 - (props.gl_data.x_width/2); // start of first spec
         let x_offset = 0
         let fidx = 0;
-        console.log(props.ordered_stream_files[props.selected_stream]);
+       // console.log(props.ordered_stream_files[props.selected_stream]);
         for (let i = 0; i < props.ordered_stream_files[props.selected_stream].length; i++){
             let det_fn = detection['body']['filename'];
             let o_fn = props.ordered_stream_files[props.selected_stream][i]['filename'];
-            console.log(det_fn,o_fn)
+           // console.log(det_fn,o_fn)
             if (props.ordered_stream_files[props.selected_stream][i]['filename'] == detection['body']['filename']) {
-                console.log(detection['body']['filename']);
+            //    console.log(detection['body']['filename']);
                 break;
             }
             fidx += 1;
         }
-        console.log(fidx);
+       // console.log(fidx);
         x_offset = fidx * props.gl_data.x_width;
         let start_time = detection['body']['chunk_start'];
        
         let end_time = detection['body']['chunk_end'];
 
         let xgl_start = x_0 + x_offset + get_delta_x_from_t(start_time, detection['body']['filename']);
-        console.log(x_0, x_offset, xgl_start, start_time);
+       // console.log(x_0, x_offset, xgl_start, start_time);
         let xgl_end = x_0 + x_offset + get_delta_x_from_t(end_time, detection['body']['filename']);
         let ygl_max = 300;
         let ygl_min = 60;
@@ -136,7 +136,7 @@ const DrawStreamDetection = (props) => {
     // *** Grab detections ***
     // let active_file_root = props.acousticFileData.fileName.split('.')[0];
     let active_detections = [];
-    console.log(props.detections);
+  //  console.log(props.detections);
 
     if (props.detections.hasOwnProperty(props.selected_stream[0])) {
         for (let i = 0; i < props.detections[props.selected_stream[0]].length; i++) {
@@ -150,7 +150,7 @@ const DrawStreamDetection = (props) => {
 
    
 
-    console.log(active_detections);
+   // console.log(active_detections);
     // *** Build Geometry ***
     for (let i = 0; i < active_detections.length; i++){
         for (let j = 0; j < active_detections[i].length; j++){
@@ -176,7 +176,7 @@ const DrawStreamDetection = (props) => {
             <>
                 {
                     dataSetArray.map((item, key) => (
-                        <PlotGeo points={item.points} color='white' label={item.label} width={2.0} />
+                        <PlotGeo points={item.points} color='red' label={item.label} width={2.0} />
                     ))
                 }
             </>

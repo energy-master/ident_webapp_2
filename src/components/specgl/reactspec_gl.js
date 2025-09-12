@@ -78,12 +78,7 @@ const SpecGL = (params) => {
         let order_id = Math.random() * 999999;
 
         dispatch({
-            type: 'CAMERA_ORDER', payload: {
-                'order_type': 'live',
-                'order_id': order_id,
-                'xpos': 0, 'ypos': 400, 'zpos': 1500,
-                'xLookAt': 0, 'yLookAt': 400, 'zLookAt': 0
-            }
+            type: 'GO_LIVE'
         })
 
 
@@ -211,7 +206,7 @@ const SpecGL = (params) => {
 
 const mapStateToProps = (state) => ({
 
-    orders : state.camera_orders
+   // orders : state.camera_orders
 
 })
 

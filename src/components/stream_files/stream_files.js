@@ -160,6 +160,7 @@ function StreamFiles(props) {
     const dispatch = useDispatch();
 
     const triggerFile = (file_name) => {
+        console.log("file clicked");
         dispatch({ type: "FILE_SELECTED", payload: { 'name': file_name, 'timestamp': "", 'active_stream': props.selected_stream[0] } });
 
     }
