@@ -27,7 +27,7 @@ const DrawStreamDetection = (props) => {
     // }
 
     if (props.selected_stream.length < 1){
-        return;
+       return;
     }
 
     // if (props.spectrogram.data_present == false) {

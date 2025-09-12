@@ -29,6 +29,7 @@ import ConnectedCameraAction from '../camera/camera';
 import Particles from './particles';
 import ConnectedStreamImages from './spec_img';
 import ConnectedDrawStreamDetection from './draw_stream_detections';
+import ConnectedDrawLabels from './draw_labels';
 import Button from '@mui/material/Button';
 import ConnectedCameraOrders from '../camera/camera_order';
 import { Vector3 } from 'three';
@@ -143,6 +144,7 @@ const SpecGL = (params) => {
         <ConnectedPlotActiveGeometry />
         <ConnectedDrawActiveGeometry />
         <ConnectedDrawStreamDetection />
+        <ConnectedDrawLabels />
         <ConnectedDrawEnergies />
         {/* <ConnectedLogger /> */}
         <Text

@@ -13,12 +13,12 @@ import { MeshLineGeometry, MeshLineMaterial, raycast } from 'meshline'
 extend({ MeshLineGeometry, MeshLineMaterial })
 
 function StreamImages(params)  {
-    console.log("streaming images");
+   // console.log("streaming images");
     // console.log(params.current_filename);
 
     const dispatch = useDispatch();
 
-    console.log(params.current_filename);
+    //ole.log(params.current_filename);
     // console.log(params.selected_stream[0]);
     if (params.selected_stream.length < 1){
         return;
@@ -67,10 +67,10 @@ function StreamImages(params)  {
             }
         }
         
-        console.log(start_gl_x);
-        console.log(start_stream_idx);
-        console.log(params.ordered_stream_files[params.selected_stream[0]]);
-        console.log(end_stream_idx);
+        // console.log(start_gl_x);
+        // console.log(start_stream_idx);
+        // console.log(params.ordered_stream_files[params.selected_stream[0]]);
+        // console.log(end_stream_idx);
         //console.log(params.ordered_stream_files[params.selected_stream[0]].length);
         
         //for (let i = 0; i < Math.min(params.ordered_stream_files[params.selected_stream[0]].length, 20); i++) {

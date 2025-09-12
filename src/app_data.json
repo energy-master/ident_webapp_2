@@ -34,6 +34,10 @@
     ],
     "selected_models" : [],
     "selected_stream" : [],
+    "stream_init" : {
+        "start_time" : ""
+    },
+    "selected_labels" : [],
     "selected_filepath" : [],
     "ordered_stream_files" : {},
     "model_id": "8449",
@@ -83,7 +87,7 @@
         "sim_bot_number" : 0
     },
     "detections" : {},
-    
+    "labels" : {},
     "stream_data_loaded" : false,
     "active_models" : {},
     "selected_view_models" : {"interesting":[]},

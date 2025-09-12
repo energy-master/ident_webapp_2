@@ -22,7 +22,7 @@ const CameraAction = (params) => {
     // const { get } = useThree();
     // const control = get().controls
 
-    console.log(params);
+   // console.log(params);
 
     // if (params.app_init['camera'] == true) {
 
@@ -42,8 +42,8 @@ const CameraAction = (params) => {
 
     // get fileName
     let fileName = params.currentFileName;
-    console.log(fileName);
-    console.log(params.ordered_file_list);
+    // console.log(fileName);
+    // console.log(params.ordered_file_list);
     // get file index in order
     let ordered_list = params.ordered_file_list[params.stream_tag];
     let file_index = 0;
@@ -54,7 +54,7 @@ const CameraAction = (params) => {
         
     
         for (let i = 0; i < ordered_list.length; i++) {
-            console.log(ordered_list[i].filename)
+           // console.log(ordered_list[i].filename)
             if ((ordered_list[i].filename == params.currentFileName) || (ordered_list[i].filename.split('.')[0] == params.currentFileName)) {
                 break;
             }
@@ -63,9 +63,9 @@ const CameraAction = (params) => {
     }
     // caluclate x,y,z and move camera
     let x_offset = file_index * params.openGl.x_width;
-    console.log(x_offset);
-    console.log(controls);
-    console.log(camera);
+    // console.log(x_offset);
+    // console.log(controls);
+    // console.log(camera);
     const targetPoint = new Vector3(x_offset+200, 400, 0); // Example target
     
     controls.enabled = false;
@@ -76,8 +76,8 @@ const CameraAction = (params) => {
     controls.enabled = true;
     controls.update();
 
-    console.log(controls);
-    console.log(camera);
+    // console.log(controls);
+    // console.log(camera);
    
 
     return (

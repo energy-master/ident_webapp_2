@@ -49,12 +49,12 @@ function StreamData(props) {
             
             // console.log(response);
             let stream_data = response.data;
-            console.log(stream_data['detections']);
+            //console.log(stream_data['detections']);
             dispatch({ type: "DETECTIONS_LOADED", payload: stream_data['detections'] });
             dispatch({ type: "ACTIVE_MODELS_LOADED", payload: stream_data['models'] });
             dispatch({ type: "FILEDATA_LOADED", payload: stream_data['file_data'] });
             dispatch({ type: "ORDERED_STREAM", payload: stream_data['ordered']});
-            
+            dispatch({ type: "LABELS_LOADED", payload: stream_data['labels'] });
 
             // console.log(response.data);
             // start data polling
@@ -107,7 +107,8 @@ function StreamData(props) {
             if (props.ordered_files[params['row']['name']].length > 0) {
                 let f_file = props.ordered_files[params['row']['name']][0].filename;
                 let t_ts = props.ordered_files[params['row']['name']][0]["datetime"]["date"];
-                dispatch({ type: "FILE_SELECTED", payload: { 'name': f_file, 'timestamp': t_ts, 'active_stream' : props.selected_stream } });
+                dispatch({ type: "FILE_SELECTED", payload: { 'name': f_file, 'timestamp': t_ts, 'active_stream': props.selected_stream } });
+                //dispatch({ type: "STREAM_INIT", payload: f_file });
             }
         }
         else {

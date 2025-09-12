@@ -156,12 +156,12 @@ function StreamFiles(props) {
 
    
   
-    console.log(props.detections);
+   // console.log(props.detections);
     const dispatch = useDispatch();
 
     const triggerFile = (file_name) => {
         console.log("file clicked");
-        dispatch({ type: "FILE_SELECTED", payload: { 'name': file_name, 'timestamp': "", 'active_stream': props.selected_stream[0] } });
+    dispatch({ type: "FILE_SELECTED", payload: { 'name': file_name, 'timestamp': "", 'active_stream': props.selected_stream[0] } });
 
     }
     //let rows = props.model_list;
@@ -176,7 +176,7 @@ function StreamFiles(props) {
             return;
         }
         
-        console.log("axios");
+       // console.log("axios");
             last_stream_location = selected_stream_tag;
             const formData = new FormData();
             let config = {};
@@ -200,11 +200,11 @@ function StreamFiles(props) {
 
                 // console.log(response);
                 let stream_data = response.data;
-                console.log(response.data);
+              //  console.log(response.data);
                 // start data polling
                 let file_list = [];
                 let file_data = [];
-                console.log(selected_stream_tag);
+             //   console.log(selected_stream_tag);
                 if (selected_stream_tag != 'saved_files') {
                     
                 
@@ -232,7 +232,7 @@ function StreamFiles(props) {
                             }
                         });
                         // file_data = stream_data['streams'][0]['saved_files'];
-                        console.log(file_data);
+                      //  console.log(file_data);
                     }
                    
                     buildRows(file_data, [], file_http);
@@ -250,7 +250,7 @@ function StreamFiles(props) {
     const buildRows = (data, detections, file_http) => {
         
         rows = [];
-        console.log(detections);
+      //  console.log(detections);
         for (let i = 0; i < (data.length); i++) {
            // console.log(data[i]);
 
@@ -276,7 +276,7 @@ function StreamFiles(props) {
                
         
             });
-            console.log(rows);
+          //  console.log(rows);
 
 
         }
@@ -291,9 +291,9 @@ function StreamFiles(props) {
         event, // MuiEvent<React.MouseEvent<HTMLElement>>
         details, // GridCallbackDetails
     ) => {
-        console.log(event);
-        console.log(details);
-        console.log(params);
+        // console.log(event);
+        // console.log(details);
+        // console.log(params);
 
 
         // if (event.target["data-field"] == "name") {

@@ -118,6 +118,26 @@ const store = createStore((state = app_data, action) => {
     }
 
   } 
+  if (action.type == ('STREAM_INIT')) {
+    //start_time
+    let tmp = state.stream_init;
+    console.log(action.payload);
+
+    return {
+      ...state,
+      
+    }
+
+  }
+  
+  if (action.type == ('LABELS_LOADED')) {
+
+    return {
+      ...state,
+      labels: action.payload
+    }
+
+  }
   if (action.type == ('SIM_FILE_TIME')) {
 
     return {

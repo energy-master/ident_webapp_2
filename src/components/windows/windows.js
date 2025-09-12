@@ -25,6 +25,7 @@ import ConnectedLayersDialogue from '../../components/layers_dialogue/layers_dia
 import ConnectedModelParams from '../../components/model_params/model_params';
 import ConnectedAppProgressBar from '../../components/appProgressBar/app_progress_bar';
 import ConnectedSimModelsDialogue from '../../components/sim_model_dialogue/sim_model_dialogue';
+import ConnectedLabelsDialogue from '../../components/LabelDialogue/label_dialogue';
 import { GridNoColumnsOverlay } from '@mui/x-data-grid';
 
 const eventLogger = (e, data) => {
@@ -144,6 +145,8 @@ const WindowGUI = (props) => {
 
             </Draggable >
                 : null}
+
+            
             {props.windows_show[0]['Detections'] ?
                 <>
                 <Draggable
@@ -174,7 +177,8 @@ const WindowGUI = (props) => {
                        
                         </div>
                     </div>
-                </Draggable>
+                    </Draggable>
+                    
                     <Draggable
                         nodeRef={nodeRef}
                         handle=".window-header" // Only drag by the header
@@ -202,6 +206,69 @@ const WindowGUI = (props) => {
                             </div>
                         </div>
                     </Draggable>
+
+                    <Draggable
+                        nodeRef={nodeRef}
+                        handle=".window-header" // Only drag by the header
+                    >
+
+                        <div ref={nodeRef} style={{ width: '20%', left: '20%', top: '30%', position: 'absolute' }}>
+                            {/* <div className="window-header" > */}
+                            <div>
+                                <div className="window-header" style={{
+                                    width: '50px', height: '25px', background: '#292D39', backgroundColor: '#292D39', bgcolor: '#292D39', color: 'white', left: '91%', position: 'absolute', zIndex: 100, cursor: 'pointer', textAlign: 'center'
+                                }}>...</div>
+
+                                <Accordion sx={{ bgcolor: '#292D39', color: '#efeff1ff', width: '90%' }}>
+                                    <AccordionSummary
+                                        expandIcon={<ArrowDropDownIcon sx={{ color: '#818698' }} />}
+                                        aria-controls="panel3-content"
+                                        id="panel3-header"
+                                    >
+                                        <Typography component="span">Label Types</Typography>
+                                    </AccordionSummary>
+                                    <AccordionDetails>
+                                       
+                                    </AccordionDetails>
+                                </Accordion>
+                                {/* </div> */}
+
+                            </div>
+                        </div>
+                    </Draggable>
+
+                    <Draggable
+                        nodeRef={nodeRef}
+                        handle=".window-header" // Only drag by the header
+                    >
+
+                        <div ref={nodeRef} style={{ width: '50%', left: '10%', top: '50%', position: 'absolute' }}>
+                            {/* <div className="window-header" > */}
+                            <div>
+                                <div className="window-header" style={{
+                                    width: '50px', height: '25px', background: '#292D39', backgroundColor: '#292D39', bgcolor: '#292D39', color: 'white', left: '91%', position: 'absolute', zIndex: 100, cursor: 'pointer', textAlign: 'center'
+                                }}>...</div>
+
+                                <Accordion sx={{ bgcolor: '#292D39', color: '#efeff1ff', width: '90%' }}>
+                                    <AccordionSummary
+                                        expandIcon={<ArrowDropDownIcon sx={{ color: '#818698' }} />}
+                                        aria-controls="panel3-content"
+                                        id="panel3-header"
+                                    >
+                                        <Typography component="span">Label List</Typography>
+                                    </AccordionSummary>
+                                    <AccordionDetails>
+                                        <ConnectedLabelsDialogue />
+                                    </AccordionDetails>
+                                </Accordion>
+                                {/* </div> */}
+
+                            </div>
+                        </div>
+                    </Draggable>
+
+
+
 
         <Draggable
             nodeRef={nodeRef}
