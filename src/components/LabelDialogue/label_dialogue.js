@@ -94,7 +94,8 @@ function LabelsDialogue(props) {
             let date2 = new Date(label_time);
             console.log(date1, date2);
             diff = (date1.getTime() - date2.getTime()) / 1000;
-            if (diff > 0) {
+            console.log(diff);
+            if (diff >= 0) {
                 // console.log(diff);
                 if (diff < 300) {
                     if (diff < sel_diff) {
@@ -119,8 +120,12 @@ function LabelsDialogue(props) {
         rows = [];
         
         for (let i = 0; i < (data.length); i++) {
-            console.log(data[i]);
+            //console.log(data[i]);
             let idx = GetFileLocation(data[i]);
+            if (idx == -1){
+                console.log(idx);
+                continue;
+            }
             // let idx = 2;
             console.log(idx);
             let fn = props.ordered_stream_files[props.selected_stream[0]][idx]["filename"];
@@ -168,7 +173,7 @@ function LabelsDialogue(props) {
             for (let i = 0; i < props.labels[selected_stream_tag].length; i++){
                // console.log(props.detections[selected_stream_tag][i]['model'], props.view_models["interesting"]);
                 //if (props.view_models["interesting"].includes(props.detections[selected_stream_tag][i]['model'])) {
-                    console.log("hit");
+                    //console.log("hit");
                     valid_labels.push(props.labels[selected_stream_tag][i]);
                 //}
 

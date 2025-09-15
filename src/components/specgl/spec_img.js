@@ -79,39 +79,45 @@ function StreamImages(params)  {
 
             let gl_w = stream_src ? params.openGl.x_width : params.openGl.x_width;
            // console.log(imgPath + '/' + params.ordered_stream_files[params.selected_stream[0]][i].file_root + "_spec.jpg")
-            let instance = {
-                'imgPath': imgPath + '/' + params.ordered_stream_files[params.selected_stream[0]][i].file_root + "_spec.jpg",
-                'xPos': start_gl_x,
-                'yPos': y_base,
-                'zPos': 20,
-                'width': gl_w,
-                'height': 500,
-                'file_name': params.ordered_stream_files[params.selected_stream[0]][i].filename,
-                'timestamp': params.ordered_stream_files[params.selected_stream[0]][i]['datetime']['date'],
-                'x_f_pos': start_gl_x - (gl_w / 2),
-                'y_f_pos': y_base - (500 / 2),
-                'z_f_pos': 21,
-                'f_width': gl_w - 50,
-                'f_height' : 390
-                
-            };
+            
+            
+            
+           
+                        let instance = {
+                            'imgPath': imgPath + '/' + params.ordered_stream_files[params.selected_stream[0]][i].file_root + "_spec.jpg",
+                            'xPos': start_gl_x,
+                            'yPos': y_base,
+                            'zPos': 20,
+                            'width': gl_w,
+                            'height': 500,
+                            'file_name': params.ordered_stream_files[params.selected_stream[0]][i].filename,
+                            'timestamp': params.ordered_stream_files[params.selected_stream[0]][i]['datetime']['date'],
+                            'x_f_pos': start_gl_x - (gl_w / 2),
+                            'y_f_pos': y_base - (500 / 2),
+                            'z_f_pos': 21,
+                            'f_width': gl_w - 50,
+                            'f_height': 390
 
+                        };
+
+
+                        f_draw_data[params.ordered_stream_files[params.selected_stream[0]][i].filename] = {
+                            'xpos': start_gl_x - (gl_w / 2),
+                            'ypos': y_base - (500 / 2),
+                            'zpos': 21,
+                            'width': gl_w - 50,
+                            'height': 390
+                        }
+                        // console.log(instance);
+                        stream_render_data.push(instance);
+
+                        start_gl_x += (params.openGl.x_width);
+                        number_loaded += 1;
+                       
+               
+                
             
-            f_draw_data[params.ordered_stream_files[params.selected_stream[0]][i].filename] = {
-                'xpos': start_gl_x - (gl_w/2),
-                'ypos': y_base - (500/2),
-                'zpos': 21,
-                'width' : gl_w - 50,
-                'height' : 390
-            }
-            // console.log(instance);
-            stream_render_data.push(instance);
-            
-            start_gl_x += (params.openGl.x_width);
-            number_loaded += 1;
-            // if (number_loaded > 5) {
-            //     break;
-            // }
+
 
         }
 
@@ -147,7 +153,7 @@ function StreamImages(params)  {
                         />
                      <Text
                                     position={[item.xPos - (item.width/4), item.yPos + (item.height/2)+10, item.zPos]}
-                                    scale={[13, 13, 13]}
+                                    scale={[20, 20, 20]}
                                     color="white" // default
                                     anchorX="left" // default
                                     anchorY="middle" // default 
@@ -156,7 +162,7 @@ function StreamImages(params)  {
                         </Text>
                         <Text
                             position={[item.xPos+100 , item.yPos + (item.height / 2) + 10, item.zPos]}
-                            scale={[13, 13, 13]}
+                            scale={[20, 20, 20]}
                             color="white" // default
                             anchorX="left" // default
                             anchorY="middle" // default 
@@ -208,10 +214,11 @@ function ImageBox({
 
 
     const texture = useLoader(TextureLoader, imgPath);
- 
     
+    //const response = fetch('https://api.example.com/data');
+
     return (
-      
+        
         <mesh position={[xPos,yPos,zPos]}>
                 <planeGeometry args={[width, height]} /> 
                 <meshBasicMaterial map={texture} />

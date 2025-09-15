@@ -126,7 +126,8 @@
             "Search":false,
             "Connect":true,
             "Detections":false,
-            "Log" : false
+            "Log" : false,
+            "GIS" : true
         }
     ]
 }

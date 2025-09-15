@@ -35,7 +35,7 @@ const DrawLabels = (props) => {
             let date2 = new Date(label_time);
             // console.log(date1, date2);
             diff = (date1.getTime() - date2.getTime())/1000;
-            if (diff > 0){
+            if (diff >= 0){
                 // console.log(diff);
                 if (diff < 300) {
                     if (diff < sel_diff) {
@@ -86,7 +86,15 @@ const DrawLabels = (props) => {
             // get absolute glx value
             let x_offset = ordered_idx * props.gl_data.x_width;
             let xgl_start = x_offset + delta_x;
-            let xgl_end = x_offset + 100;
+
+            let s_int = 0;
+            let date1 = new Date(label['timestamp_start']);
+            let date2 = new Date(label['timestamp_end']);
+            s_int = (date2.getTime() - date1.getTime()) / 1000;
+            
+            let delta_x_int = get_delta_x_from_t(s_int, active_fn);
+            console.log(s_int, delta_x_int);
+            let xgl_end = x_offset + delta_x_int;
             let ygl_max = 300;
             let ygl_min = 60;
             console.log(x_offset, delta_x);

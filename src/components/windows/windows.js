@@ -26,6 +26,7 @@ import ConnectedModelParams from '../../components/model_params/model_params';
 import ConnectedAppProgressBar from '../../components/appProgressBar/app_progress_bar';
 import ConnectedSimModelsDialogue from '../../components/sim_model_dialogue/sim_model_dialogue';
 import ConnectedLabelsDialogue from '../../components/LabelDialogue/label_dialogue';
+import ConnectedGISEngine from '../../components/gis/gis_engine';
 import { GridNoColumnsOverlay } from '@mui/x-data-grid';
 
 const eventLogger = (e, data) => {
@@ -54,7 +55,7 @@ const Windows = ({ }) => {
 
 
 // export default Windows;
-
+//defaultExpanded
 const WindowGUI = (props) => {
     const dispatch = useDispatch();
     const nodeRef = React.useRef(null); // Create a ref
@@ -63,6 +64,43 @@ const WindowGUI = (props) => {
     console.log(props.windows_show['id']);
     return (
         <>
+            {props.windows_show[0]['Connect'] ?
+            <Draggable
+                nodeRef={nodeRef}
+                handle=".window-header" // Only drag by the header
+
+            >
+
+
+                    <div ref={nodeRef} style={{ width: '60%', left: '1%', top: '3%', position: 'absolute', resize: 'both' }}>
+                    <div >
+                        <div className="window-header" style={{
+                            width: '50px', height: '25px', background: '#292D39', backgroundColor: '#292D39', bgcolor: '#292D39', color: 'white', left: '91%', position: 'absolute', zIndex: 100, cursor: 'pointer', textAlign: 'center'
+                        }}>...</div>
+
+                            <Accordion defaultExpanded sx={{ bgcolor: '#292D39', color: '#efeff1ff', fontSize: '14px', fontWeight: 'bold', width: '90%' }}>
+                            <AccordionSummary
+                                expandIcon={<ArrowDropDownIcon sx={{ color: '#818698' }} />}
+                                aria-controls="panel1-content"
+                                id="panel1-header"
+                            >
+                                <Typography component="span">Available Live Data</Typography>
+                            </AccordionSummary>
+                            <AccordionDetails>
+                                <ConnectedGISEngine />
+                            </AccordionDetails>
+                        </Accordion>
+
+
+
+                    </div>
+
+                </div>
+
+            </Draggable >
+                : null}
+
+
             
         // Connect to data    
         { props.windows_show[0]['Connect'] ?
@@ -73,7 +111,7 @@ const WindowGUI = (props) => {
             >
 
 
-                <div ref={nodeRef} style={{ width: '50%', left: '2%', top: '10%', position: 'absolute' }}>
+                <div ref={nodeRef} style={{ width: '30%', left: '60%', top: '3%', position: 'absolute' }}>
                     <div >
                         <div className="window-header" style={{
                             width: '50px', height: '25px', background: '#292D39', backgroundColor: '#292D39', bgcolor: '#292D39', color: 'white', left: '91%', position: 'absolute', zIndex: 100, cursor: 'pointer', textAlign: 'center'
@@ -183,7 +221,7 @@ const WindowGUI = (props) => {
                         nodeRef={nodeRef}
                         handle=".window-header" // Only drag by the header
                     >
-                        <div ref={nodeRef} style={{ width: '20%', left: '55%', top: '60%', position: 'absolute' }}>
+                        <div ref={nodeRef} style={{ width: '20%', left: '65%', top: '30%', position: 'absolute' }}>
                             {/* <div className="window-header" > */}
                             <div>
                                 <div className="window-header" style={{
@@ -212,7 +250,7 @@ const WindowGUI = (props) => {
                         handle=".window-header" // Only drag by the header
                     >
 
-                        <div ref={nodeRef} style={{ width: '20%', left: '20%', top: '30%', position: 'absolute' }}>
+                        <div ref={nodeRef} style={{ width: '20%', left: '10%', top: '10%', position: 'absolute' }}>
                             {/* <div className="window-header" > */}
                             <div>
                                 <div className="window-header" style={{
@@ -242,7 +280,7 @@ const WindowGUI = (props) => {
                         handle=".window-header" // Only drag by the header
                     >
 
-                        <div ref={nodeRef} style={{ width: '50%', left: '10%', top: '50%', position: 'absolute' }}>
+                        <div ref={nodeRef} style={{ width: '50%', left: '10%', top: '30%', position: 'absolute' }}>
                             {/* <div className="window-header" > */}
                             <div>
                                 <div className="window-header" style={{
@@ -339,7 +377,7 @@ const WindowGUI = (props) => {
             nodeRef={nodeRef}
             handle=".window-header" // Only drag by the header
         >
-            <div ref={nodeRef} style={{ width: '45%', left: '55%', top: '55%', position: 'absolute' }}>
+            <div ref={nodeRef} style={{ width: '45%', left: '55%', top: '40%', position: 'absolute' }}>
                 {/* <div className="window-header" > */}
                 <div>
                     <div className="window-header" style={{
@@ -368,7 +406,7 @@ const WindowGUI = (props) => {
             nodeRef={nodeRef}
             handle=".window-header" // Only drag by the header
         >
-            <div ref={nodeRef} style={{ width: '30%', left: '55%', top: '50%', position: 'absolute' }}>
+            <div ref={nodeRef} style={{ width: '30%', left: '55%', top: '30%', position: 'absolute' }}>
                 {/* <div className="window-header" > */}
                 <div>
                     <div className="window-header" style={{

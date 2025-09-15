@@ -99,7 +99,7 @@ const SpecGL = (params) => {
             dpr={Math.min(window.devicePixelRatio, 2)}
             camera={{
                 fov: 40,
-                position: [-1300, 300, 1500],
+                position: [-1500, 300, 1200],
                 near: 0.1,
                 far: 10000
             }}
@@ -120,7 +120,7 @@ const SpecGL = (params) => {
             
         <OrbitControls
                 // position={[params.orders['xpos'], params.orders['ypos'], params.orders['zpos']]}
-                target={[-1300, 300, 0]}
+                target={[-1500, 300, 0]}
                 dampingFactor={0.55}
                 makeDefault            
         />
@@ -156,16 +156,16 @@ const SpecGL = (params) => {
                         >
                             M A R L I N  AI
                 </Text>
-                {/* <ImageBox
+                <ImageBox
 
-                    imgPath={"https://marlin-network.hopto.org/marlin_live/rsa_green_logo.png"}
-                    xPos={-600}
-                    yPos={-40}
+                    imgPath={"https://marlin-network.hopto.org/marlin_live/rsa_logo.png"}
+                    xPos={-1150}
+                    yPos={180}
                     zPos={10}
                     width={200}
                     height={100}
 
-                /> */}
+                />
         <Suspense fallback={null}>
             <ConnectedStreamImages />
         </Suspense>
@@ -231,11 +231,16 @@ function ImageBox({
 
 
     return (
-
+        <>
         <mesh position={[xPos, yPos, zPos]}>
             <planeGeometry args={[width, height]} />
             <meshBasicMaterial map={texture} />
         </mesh>
+         <mesh position={[xPos-20, yPos, zPos-10]}>
+            <planeGeometry args={[350, 150]} />
+            <meshBasicMaterial color={"white"} />
+        </mesh>
+        </>
 
 
 
