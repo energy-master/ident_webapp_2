@@ -348,6 +348,16 @@ function StreamFiles(props) {
                             // Styles for the "Rows per page" label and displayed rows count
                             fontSize: '1.0rem',
                             color: 'primary.main'
+                        }, "& .MuiDataGrid-row:hover": {
+                            backgroundColor: "green"
+                            // color: "red"
+                        }, "&.Mui-selected": {
+                            backgroundColor: "green",
+                            color: "white",
+                            // Add more specific selectors for other elements within pagination
+
+                        }, "& .MuiDataGrid-row.Mui-selected": {
+                            backgroundColor: "green",
                         },
                         // Add more specific selectors for other elements within pagination
 

@@ -92,9 +92,9 @@ function LabelsDialogue(props) {
             
             let date1 = new Date(file_time_zulu);
             let date2 = new Date(label_time);
-            console.log(date1, date2);
+            //console.log(date1, date2);
             diff = (date1.getTime() - date2.getTime()) / 1000;
-            console.log(diff);
+            //console.log(diff);
             if (diff >= 0) {
                 // console.log(diff);
                 if (diff < 300) {
@@ -216,6 +216,16 @@ function LabelsDialogue(props) {
                             // Styles for the "Rows per page" label and displayed rows count
                             fontSize: '1.0rem',
                             color: 'primary.main'
+                        }, "& .MuiDataGrid-row:hover": {
+                            backgroundColor: "green"
+                            // color: "red"
+                        }, "&.Mui-selected": {
+                            backgroundColor: "green",
+                            color: "white",
+                            // Add more specific selectors for other elements within pagination
+
+                        }, "& .MuiDataGrid-row.Mui-selected": {
+                            backgroundColor: "green",
                         },
                     }}
                     rows={rows}

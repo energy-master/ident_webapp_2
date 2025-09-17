@@ -158,7 +158,7 @@ const SpecGL = (params) => {
                 </Text>
                 <ImageBox
 
-                    imgPath={"https://marlin-network.hopto.org/marlin_live/rsa_logo.png"}
+                    imgPath={"https://marlin-network.hopto.org/marlin_live/RSA_w_on_b.png"}
                     xPos={-1150}
                     yPos={180}
                     zPos={10}
@@ -236,10 +236,10 @@ function ImageBox({
             <planeGeometry args={[width, height]} />
             <meshBasicMaterial map={texture} />
         </mesh>
-         <mesh position={[xPos-20, yPos, zPos-10]}>
+         {/* <mesh position={[xPos-20, yPos, zPos-10]}>
             <planeGeometry args={[350, 150]} />
             <meshBasicMaterial color={"white"} />
-        </mesh>
+        </mesh> */}
         </>
 
 

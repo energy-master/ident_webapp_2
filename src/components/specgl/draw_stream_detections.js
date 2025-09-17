@@ -40,14 +40,32 @@ const DrawStreamDetection = (props) => {
     let dataSetArray = [];
     let dataPresent = false;
 
-    const get_y_from_f = (frequency) => {
-        // console.log(props.spectrogram.frequency_vector[props.spectrogram.frequency_vector.length - 1]);
-        let f_y_ratio = props.gl_data.y_width / props.spectrogram.frequency_vector[props.spectrogram.frequency_vector.length - 1];
-        let freq_vector = props.spectrogram.frequency_vector;
-        let gl_y_range = props.gl_data.y_width;
-        let y_zero = 0 - (props.gl_data.y_width / 2);
-        // console.log(f_y_ratio);
-        let gly = y_zero + (frequency * f_y_ratio);
+    const get_y_from_f = (frequency, filename) => {
+        let gly = 0;
+        console.log(filename);
+        // if (props.f_draw_data.hasOwnProperty(filename)) {
+            
+        
+            // console.log(props.spectrogram.frequency_vector[props.spectrogram.frequency_vector.length - 1]);
+            // console.log(props.f_draw_data);
+            // let height = props.f_draw_data[filename].height;
+            // let y_zero = props.f_draw_data[filename].ypos;
+
+        let y_zero = 70;
+        let height = 390;
+        
+            let f_y_ratio = height / props.file_data[props.selected_stream][filename].f_max;
+            console.log(frequency, f_y_ratio, props.gl_data.y_width, props.file_data[props.selected_stream][filename].f_max);
+            let gl_y_range = props.gl_data.y_width;
+
+
+            //let y_zero = 0 - (props.gl_data.y_width / 2);
+       
+       
+            // console.log(f_y_ratio);
+            gly = y_zero + (frequency * f_y_ratio);
+            console.log(gly);
+        //}
         // console.log(gly, frequency);
         return gly;
     }
@@ -119,9 +137,28 @@ const DrawStreamDetection = (props) => {
         let xgl_start = x_0 + x_offset + get_delta_x_from_t(start_time, detection['body']['filename']);
        // console.log(x_0, x_offset, xgl_start, start_time);
         let xgl_end = x_0 + x_offset + get_delta_x_from_t(end_time, detection['body']['filename']);
+        
+        //console.log(start_time, end_time, xgl_start, xgl_end, detection['body']['filename']);
+        
         let ygl_max = 300;
         let ygl_min = 60;
 
+
+        if (detection["body"].hasOwnProperty("min_f")) {
+            ygl_min = get_y_from_f(detection["body"]["min_f"], detection['body']['filename']);
+            let f_max = detection["body"]["max_f"].replace("Hz", '');
+
+            ygl_max = get_y_from_f(f_max, detection['body']['filename']);
+
+        }
+        else {
+            ygl_max = 300;
+             ygl_min = 60;
+        }
+
+       
+
+        
        
         // points
         points.push(xgl_start, ygl_min, 40, xgl_start, ygl_max, 40, xgl_end, ygl_max, 40, xgl_end, ygl_min, 40, xgl_start, ygl_min, 40);
@@ -154,7 +191,8 @@ const DrawStreamDetection = (props) => {
     // *** Build Geometry ***
     for (let i = 0; i < active_detections.length; i++){
         for (let j = 0; j < active_detections[i].length; j++){
-
+            console.log(active_detections[i]);
+            //if (props.f_draw_data.hasOwnProperty(detection['body']['filename']))
             buildGeometry(active_detections[i][j]);
 
         }
@@ -176,7 +214,7 @@ const DrawStreamDetection = (props) => {
             <>
                 {
                     dataSetArray.map((item, key) => (
-                        <PlotGeo points={item.points} color='red' label={item.label} width={2.0} />
+                        <PlotGeo points={item.points} color='red' label={item.label} width={4.0} />
                     ))
                 }
             </>
@@ -211,7 +249,8 @@ const mapStateToProps = (state) => ({
     detections: state.detections,
     selected_stream: state.selected_stream,
     ordered_stream_files: state.ordered_stream_files,
-    file_data: state.file_data
+    file_data: state.file_data,
+    f_draw_data: state.file_draw_data
     
     
 })

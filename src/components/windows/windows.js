@@ -192,7 +192,7 @@ const WindowGUI = (props) => {
                     handle=".window-header" // Only drag by the header
                 >
         
-                    <div ref={nodeRef} style={{ width: '20%', left: '70%', top: '10%', position: 'absolute' }}>
+                    <div ref={nodeRef} style={{ width: '40%', left: '10%', top: '10%', position: 'absolute' }}>
                         {/* <div className="window-header" > */}
                         <div>
                             <div className="window-header" style={{
@@ -216,13 +216,13 @@ const WindowGUI = (props) => {
                         </div>
                     </div>
                     </Draggable>
-                    
+{/*                     
                     <Draggable
                         nodeRef={nodeRef}
                         handle=".window-header" // Only drag by the header
                     >
                         <div ref={nodeRef} style={{ width: '20%', left: '65%', top: '30%', position: 'absolute' }}>
-                            {/* <div className="window-header" > */}
+                           
                             <div>
                                 <div className="window-header" style={{
                                     width: '50px', height: '25px', background: '#292D39', backgroundColor: '#292D39', bgcolor: '#292D39', color: 'white', left: '91%', position: 'absolute', zIndex: 100, cursor: 'pointer', textAlign: 'center'
@@ -240,18 +240,18 @@ const WindowGUI = (props) => {
                                         <ConnectedSimModelsDialogue />
                                     </AccordionDetails>
                                 </Accordion>
-                                {/* </div> */}
+                               
                             </div>
                         </div>
-                    </Draggable>
+                    </Draggable> */}
 
-                    <Draggable
+                    {/* <Draggable
                         nodeRef={nodeRef}
                         handle=".window-header" // Only drag by the header
                     >
 
-                        <div ref={nodeRef} style={{ width: '20%', left: '10%', top: '10%', position: 'absolute' }}>
-                            {/* <div className="window-header" > */}
+                        <div ref={nodeRef} style={{ width: '20%', left: '10%', top: '40%', position: 'absolute' }}>
+                           
                             <div>
                                 <div className="window-header" style={{
                                     width: '50px', height: '25px', background: '#292D39', backgroundColor: '#292D39', bgcolor: '#292D39', color: 'white', left: '91%', position: 'absolute', zIndex: 100, cursor: 'pointer', textAlign: 'center'
@@ -269,19 +269,19 @@ const WindowGUI = (props) => {
                                        
                                     </AccordionDetails>
                                 </Accordion>
-                                {/* </div> */}
+                              
 
                             </div>
                         </div>
-                    </Draggable>
+                    </Draggable> */}
 
-                    <Draggable
+                    {/* <Draggable
                         nodeRef={nodeRef}
                         handle=".window-header" // Only drag by the header
                     >
 
                         <div ref={nodeRef} style={{ width: '50%', left: '10%', top: '30%', position: 'absolute' }}>
-                            {/* <div className="window-header" > */}
+                           
                             <div>
                                 <div className="window-header" style={{
                                     width: '50px', height: '25px', background: '#292D39', backgroundColor: '#292D39', bgcolor: '#292D39', color: 'white', left: '91%', position: 'absolute', zIndex: 100, cursor: 'pointer', textAlign: 'center'
@@ -299,11 +299,11 @@ const WindowGUI = (props) => {
                                         <ConnectedLabelsDialogue />
                                     </AccordionDetails>
                                 </Accordion>
-                                {/* </div> */}
+                              
 
                             </div>
                         </div>
-                    </Draggable>
+                    </Draggable> */}
 
 
 
@@ -313,7 +313,7 @@ const WindowGUI = (props) => {
             handle=".window-header" // Only drag by the header
 
         >
-            <div ref={nodeRef} style={{ width:'15%', left: '52%', top: '10%', position:'absolute'}}>
+            <div ref={nodeRef} style={{ width:'40%', left: '55%', top: '10%', position:'absolute'}}>
             <div>
                 <div className="window-header" style={{
                         width: '50px', height: '25px', background: '#292D39', backgroundColor: '#292D39', bgcolor: '#292D39', color: 'white', left: '91%', position: 'absolute', zIndex: 100, cursor: 'pointer', textAlign: 'center'
@@ -340,13 +340,13 @@ const WindowGUI = (props) => {
 
         </Draggable >
 
-                    <Draggable
+                    {/* <Draggable
                         
             nodeRef={nodeRef}
             handle=".window-header" // Only drag by the header
         >
-            <div ref={nodeRef} style={{ width: '15%', left: '35%', top: '10%', position: 'absolute' }}>
-                {/* <div className="window-header" > */}
+            <div ref={nodeRef} style={{ width: '20%', left: '10%', top: '20%', position: 'absolute' }}>
+               
                 <div>
                 <div className="window-header" style={{
                     width: '50px', height: '25px', background: '#292D39', backgroundColor: '#292D39', bgcolor: '#292D39', color: 'white', left: '91%', position: 'absolute', zIndex: 100, cursor: 'pointer', textAlign: 'center'
@@ -364,10 +364,10 @@ const WindowGUI = (props) => {
                             <ConnectedLayersDialogue />
                         </AccordionDetails>
                     </Accordion>
-                {/* </div> */}
+               
                 </div>
             </div>
-        </Draggable>
+        </Draggable> */}
                 </>
                 : null}
 

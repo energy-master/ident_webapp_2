@@ -141,27 +141,32 @@ function StreamData(props) {
                     <Typography variant="h6" gutterBottom>
                         {/* <span className='panel-header'>Connect to Stream</span> */}
                     </Typography></Box>
-
-
                 <DataGrid
-                   
                     sx={
                         {
                             m: 0, fontSize: 11, bgcolor: '#292D39', color: '#818698', bg: '#292D39', color: '#8C92A4', fontWeight: 'bold', '& .dataHdr':
                             {
-                            backgroundColor: '#292D39', color: '#8C92A4', fontWeight: 'bold'
-                            },'& .MuiTablePagination-root': {
+                                backgroundColor: '#292D39', color: '#8C92A4', fontWeight: 'bold'
+                            }, '& .MuiTablePagination-root': {
                                 // Styles for the root of the pagination component
                                 color: 'primary.main',
                             },
-                                '& .MuiTablePagination-selectLabel, & .MuiTablePagination-displayedRows': {
+                            '& .MuiTablePagination-selectLabel, & .MuiTablePagination-displayedRows': {
                                 // Styles for the "Rows per page" label and displayed rows count
                                 fontSize: '1.0rem',
-                                    color: 'primary.main'
-                            },
-                            // Add more specific selectors for other elements within pagination
+                                color: 'primary.main'
+                            }, "& .MuiDataGrid-row:hover": {
+                                backgroundColor: "green"
+                                // color: "red"
+                            }, "&.Mui-selected": {
+                                backgroundColor: "green",
+                                color: "white",
+                                // Add more specific selectors for other elements within pagination
                         
-                            }
+                            },"& .MuiDataGrid-row.Mui-selected": {
+                                backgroundColor: "green",
+                            },
+                        }
                     }
 
                     

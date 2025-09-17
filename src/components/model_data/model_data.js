@@ -147,7 +147,7 @@ function ModelData(props) {
                     pinnedRows={{
                         bottom: [rows[0]],
                     }}
-                    checkboxSelection
+                    //checkboxSelection
                     onRowClick={modelRow_clicked} // here
                 />
                 {/* </ThemeProvider> */}

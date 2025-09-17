@@ -277,6 +277,8 @@ const store = createStore((state = app_data, action) => {
 
     let selectedTag = action.payload;
     let current_models = state.sim_models_selected["interesting"];
+    
+    
     if (current_models.includes(selectedTag)) {
       // remove model
       const index = current_models.indexOf(selectedTag);
@@ -288,10 +290,15 @@ const store = createStore((state = app_data, action) => {
       current_models.push(selectedTag);
     }
 
+    // current_models = [selectedTag];
+
     // console.log(current_models);
     let return_models = {
       "interesting": current_models
     }
+
+
+
     console.log(current_models);
     return {
       ...state,
@@ -299,7 +306,7 @@ const store = createStore((state = app_data, action) => {
     }
   }
   if (action.type == ('VIEW_MODEL_CLICKED')) {
-
+    console.log("gere");
 
     let selectedTag = action.payload;
     let current_models = state.selected_view_models["interesting"];
@@ -314,7 +321,8 @@ const store = createStore((state = app_data, action) => {
       current_models.push(selectedTag);
     }
 
-    // console.log(current_models);
+    current_models= [action.payload];
+    console.log(current_models);
     let return_models = {
       "interesting" : current_models
     }
