@@ -62,9 +62,10 @@ const store = createStore((state = app_data, action) => {
   //STREAM_SELECTED
   if (action.type == ('CAMERA_ORDER')) {
 
-    let current_p = state.acousticFileData;
+    
     console.log(action.payload['order_type']);
-    if (action.payload['order_type'] = 'fixed'){
+    if (action.payload['order_type'] == 'fixed') {
+      console.log("fixed");
       return {
         ...state,
         camera_orders: action.payload,
@@ -72,24 +73,25 @@ const store = createStore((state = app_data, action) => {
       }
     }
 
+    let current_p = state.acousticFileData;
+    if (action.payload['order_type'] == 'home') {
 
-    if (action.payload['order_type'] = 'home') {
-
-
+      console.log("going home");
       if (state.selected_stream.length > 0) {
-
+        
         let ofd = state.ordered_stream_files;
+        let last_idx = ofd[state.selected_stream[0]].length - 2;
         console.log(ofd);
-        console.log(ofd[state.selected_stream[0]][0]['filename']);
+        console.log(ofd[state.selected_stream[0]][last_idx]['filename']);
 
         
-        current_p.fileName = ofd[state.selected_stream[0]][0]['filename'];
-        current_p.timestamp = ofd[state.selected_stream[0]][0]['timeZulu'];
+        current_p.fileName = ofd[state.selected_stream[0]][last_idx]['filename'];
+        current_p.timestamp = ofd[state.selected_stream[0]][last_idx]['timeZulu'];
       }
 
       return {
         ...state,
-        camera_orders: action.payload,
+      
         acousticFileData: current_p
 
       }
@@ -221,14 +223,15 @@ const store = createStore((state = app_data, action) => {
     console.log(state.selected_stream);
     if (state.selected_stream.length > 0) {
       
-   
+      
       let ofd = state.ordered_stream_files;
+      let last_idx = ofd[state.selected_stream[0]].length - 2;
       console.log(ofd);
-      console.log(ofd[state.selected_stream[0]][1]['filename']);
+      console.log(ofd[state.selected_stream[0]][last_idx]['filename']);
 
       let current_p = state.acousticFileData;
-      current_p.fileName = ofd[state.selected_stream[0]][1]['filename'];
-      current_p.timestamp = ofd[state.selected_stream[0]][1]['timeZulu'];
+      current_p.fileName = ofd[state.selected_stream[0]][last_idx]['filename'];
+      current_p.timestamp = ofd[state.selected_stream[0]][last_idx]['timeZulu'];
 
       return {
         ...state,
