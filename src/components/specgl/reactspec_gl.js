@@ -175,7 +175,7 @@ const SpecGL = (params) => {
         <Suspense fallback={null}>
             <ConnectedStreamImages />
         </Suspense>
-
+        <Box />
         
 
         {/* <ConnectedGLHud />  */}
@@ -258,7 +258,7 @@ function ImageBox({
 
 
 
-function Box(props) {
+function Box() {
     // This reference will give us direct access to the mesh
     const meshRef = useRef()
     // Set up state for the hovered and active state
@@ -269,13 +269,13 @@ function Box(props) {
     // Return view, these are regular three.js elements expressed in JSX
     return (
         <mesh
-            {...props}
+            
             ref={meshRef}
             scale={active ? 1.5 : 1}
             onClick={(event) => setActive(!active)}
             onPointerOver={(event) => setHover(true)}
             onPointerOut={(event) => setHover(false)}>
-            <boxGeometry args={[1, 1, 1]} />
+            <boxGeometry args={[10, 10, 10]} />
             <meshStandardMaterial color={hovered ? 'hotpink' : 'orange'} />
         </mesh>
     )

@@ -165,7 +165,8 @@ const DrawStreamDetection = (props) => {
        
         dataSetArray.push({
             'points': points,
-            'label': 'interesting'
+            'label': 'interesting',
+            'position': [xgl_start, ygl_min,60]
         });
 
     }
@@ -203,6 +204,7 @@ const DrawStreamDetection = (props) => {
 
     if (dataSetArray.length > 0) {
         dataPresent = true;
+        console.log(dataSetArray);
     }
 
 
@@ -214,7 +216,10 @@ const DrawStreamDetection = (props) => {
             <>
                 {
                     dataSetArray.map((item, key) => (
+                        <>
                         <PlotGeo points={item.points} color='red' label={item.label} width={4.0} />
+                            {/* <Box position={ item.position } /> */}
+                        </>
                     ))
                 }
             </>
@@ -268,6 +273,11 @@ export default ConnectedDrawStreamDetection;
 // }
 
 
+const detection_click = () => {
+    console.log("detect");
+    alert("Detect");
+}
+
 const PlotGeo = ({
     color,
     zdim,
@@ -276,14 +286,49 @@ const PlotGeo = ({
     label
 }) => {
     let s = 2;
-    const ref = useRef()
- 
-
+    // const ref = useRef()
+    const meshRef = useRef();
+    const [hovered, setHover] = useState(false);
+    useFrame((state, delta) => {})
     return (
-        <mesh ref={ref}>
-            <meshLineGeometry points={points} widthCallback={(p) => p > 0.8 ? 1.5 : 0.4} />
-            <meshLineMaterial emissive lineWidth={width} color={color} wireframe={false} />
+        <mesh
+            ref={meshRef}
+            onPointerOver={(event) => setHover(true)}
+            onPointerOut={(event) => setHover(false)}
+            onClick={(event) => { console.log('click'); }}
+        >
+            <meshLineGeometry points={points} width={2.0} />
+            <meshLineMaterial emissive lineWidth={width} color={hovered ? 'white' : 'red'} wireframe={false} />
+            
+        </mesh>
+    )   
+}
+
+
+
+function Box({
+    position
+}) {
+    // This reference will give us direct access to the mesh
+    const meshRef = useRef()
+    // Set up state for the hovered and active state
+    const [hovered, setHover] = useState(false)
+    const [active, setActive] = useState(false)
+    // Subscribe this component to the render-loop, rotate the mesh every frame
+    useFrame((state, delta) => (meshRef.current.rotation.x += delta))
+    // Return view, these are regular three.js elements expressed in JSX
+    return (
+        <mesh
+            
+            ref={meshRef}
+            scale={active ? 1.5 : 1}
+            onClick={(event) => setActive(!active)}
+            onPointerOver={(event) => setHover(true)}
+            onPointerOut={(event) => setHover(false)}
+            position={position}
+        >
+            <boxGeometry args={[100, 100, 100]} />
+            <meshStandardMaterial color={hovered ? 'hotpink' : 'orange'} />
         </mesh>
     )
 }
-
