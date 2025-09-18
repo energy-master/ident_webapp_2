@@ -64,44 +64,7 @@ const WindowGUI = (props) => {
     console.log(props.windows_show['id']);
     return (
         <>
-            {props.windows_show[0]['Connect'] ?
-            <Draggable
-                nodeRef={nodeRef}
-                handle=".window-header" // Only drag by the header
-
-            >
-
-
-                    <div ref={nodeRef} style={{ width: '60%', left: '1%', top: '3%', position: 'absolute', resize: 'both' }}>
-                    <div >
-                        <div className="window-header" style={{
-                            width: '50px', height: '25px', background: '#292D39', backgroundColor: '#292D39', bgcolor: '#292D39', color: 'white', left: '91%', position: 'absolute', zIndex: 100, cursor: 'pointer', textAlign: 'center'
-                        }}>...</div>
-
-                            <Accordion defaultExpanded sx={{ bgcolor: '#292D39', color: '#efeff1ff', fontSize: '14px', fontWeight: 'bold', width: '90%' }}>
-                            <AccordionSummary
-                                expandIcon={<ArrowDropDownIcon sx={{ color: '#818698' }} />}
-                                aria-controls="panel1-content"
-                                id="panel1-header"
-                            >
-                                <Typography component="span">Available Live Data</Typography>
-                            </AccordionSummary>
-                            <AccordionDetails>
-                                <ConnectedGISEngine />
-                            </AccordionDetails>
-                        </Accordion>
-
-
-
-                    </div>
-
-                </div>
-
-            </Draggable >
-                : null}
-
-
-            
+           
         // Connect to data    
         { props.windows_show[0]['Connect'] ?
             <Draggable
@@ -111,7 +74,7 @@ const WindowGUI = (props) => {
             >
 
 
-                <div ref={nodeRef} style={{ width: '30%', left: '60%', top: '3%', position: 'absolute' }}>
+                <div ref={nodeRef} style={{ width: '95%', left: '2%', top: '5%', position: 'absolute' }}>
                     <div >
                         <div className="window-header" style={{
                             width: '50px', height: '25px', background: '#292D39', backgroundColor: '#292D39', bgcolor: '#292D39', color: 'white', left: '91%', position: 'absolute', zIndex: 100, cursor: 'pointer', textAlign: 'center'
@@ -142,7 +105,20 @@ const WindowGUI = (props) => {
                             <AccordionDetails>
                                 <ConnectedStreamFiles />
                             </AccordionDetails>
-                        </Accordion>
+                            </Accordion>
+                            
+                            <Accordion  sx={{ bgcolor: '#292D39', color: '#efeff1ff', fontSize: '14px', fontWeight: 'bold', width: '90%' }}>
+                                <AccordionSummary
+                                    expandIcon={<ArrowDropDownIcon sx={{ color: '#818698' }} />}
+                                    aria-controls="panel1-content"
+                                    id="panel1-header"
+                                >
+                                    <Typography component="span">Available Live Data</Typography>
+                                </AccordionSummary>
+                                <AccordionDetails>
+                                    <ConnectedGISEngine />
+                                </AccordionDetails>
+                            </Accordion>
 
 
                         {/* <Accordion sx={{ bgcolor: '#292D39', color: '#818698' }}>

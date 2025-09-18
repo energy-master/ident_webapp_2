@@ -10,6 +10,7 @@ import { useLoader } from '@react-three/fiber';
 import { TextureLoader, Triangle } from 'three';
 import { Stats, OrbitControls, Line, Text } from '@react-three/drei';
 import { MeshLineGeometry, MeshLineMaterial, raycast } from 'meshline'
+import ConnectedPlotLabels from './plot_labels';
 extend({ MeshLineGeometry, MeshLineMaterial })
 
 function StreamImages(params)  {
@@ -95,7 +96,7 @@ function StreamImages(params)  {
                             'x_f_pos': start_gl_x - (gl_w / 2),
                             'y_f_pos': y_base - (500 / 2),
                             'z_f_pos': 21,
-                            'f_width': gl_w - 50,
+                            'f_width': gl_w,
                             'f_height': 390
 
                         };
@@ -105,7 +106,7 @@ function StreamImages(params)  {
                             'xpos': start_gl_x - (gl_w / 2),
                             'ypos': y_base - (500 / 2),
                             'zpos': 21,
-                            'width': gl_w - 50,
+                            'width': gl_w,
                             'height': 390
                         }
                         // console.log(instance);
@@ -131,6 +132,7 @@ function StreamImages(params)  {
 
 
         <>
+            <ConnectedPlotLabels />
             {
                 stream_render_data.map((item, key) => (
                     <>
@@ -247,12 +249,12 @@ function ImageFrame({
     const ref = useRef();
 
     return (
-        <></>
-        // <mesh ref={ref}>
-        //     <meshLineGeometry points={points} widthCallback={(p) => p > 0.8 ? 1.5 : 0.4} />
-        //     <meshLineMaterial emissive lineWidth={2} color={color} wireframe={true} />
-        // </mesh>
-
+        <>
+        <mesh ref={ref}>
+            <meshLineGeometry points={points} widthCallback={(p) => p > 0.8 ? 1.5 : 0.4} />
+            <meshLineMaterial emissive lineWidth={2} color={color} wireframe={true} />
+        </mesh>
+        </>
 
 
     );

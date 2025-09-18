@@ -105,8 +105,9 @@ function StreamData(props) {
         // this is for a stream env
         if (props.ordered_files.hasOwnProperty([params['row']['name']])) {
             if (props.ordered_files[params['row']['name']].length > 0) {
-                let f_file = props.ordered_files[params['row']['name']][0].filename;
-                let t_ts = props.ordered_files[params['row']['name']][0]["datetime"]["date"];
+                let last_idx = props.ordered_files[params['row']['name']].length-2;
+                let f_file = props.ordered_files[params['row']['name']][last_idx].filename;
+                let t_ts = props.ordered_files[params['row']['name']][last_idx]["datetime"]["date"];
                 dispatch({ type: "FILE_SELECTED", payload: { 'name': f_file, 'timestamp': t_ts, 'active_stream': props.selected_stream } });
                 //dispatch({ type: "STREAM_INIT", payload: f_file });
             }

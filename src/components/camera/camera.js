@@ -69,7 +69,7 @@ const CameraAction = (params) => {
     const targetPoint = new Vector3(x_offset+200, 400, 0); // Example target
     
     controls.enabled = false;
-    gsap.to(camera.position, { x: x_offset + 200, y: 400, z: 1800, duration: 1 });
+    gsap.to(camera.position, { x: x_offset + 200, y: 400, z: 800, duration: 1 });
     gsap.to(camera.lookAt, { x: x_offset + 200, y: 400, z: 0, duration: 1.5 });
     //camera.lookAt(x_offset + 200, 400,  0);
     controls.target = targetPoint;

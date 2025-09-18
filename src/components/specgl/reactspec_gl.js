@@ -32,6 +32,7 @@ import ConnectedDrawStreamDetection from './draw_stream_detections';
 import ConnectedDrawLabels from './draw_labels';
 import Button from '@mui/material/Button';
 import ConnectedCameraOrders from '../camera/camera_order';
+import ConnectedPlotLabels from './plot_labels';
 import { Vector3 } from 'three';
 
 import { useLoader } from '@react-three/fiber';
@@ -48,12 +49,14 @@ const SpecGL = (params) => {
         let order_id = Math.random() * 999999;
         dispatch({
             type: 'CAMERA_ORDER', payload: {
-                'order_type': 'fixed',
+                'order_type': 'home',
                 'order_id': order_id,
                 'xpos': -1000, 'ypos': 400, 'zpos': 4000,
                 'xLookAt': 500, 'yLookAt': 400, 'zLookAt': 0
             }
         })
+
+
 
 
     };
@@ -145,7 +148,8 @@ const SpecGL = (params) => {
         <ConnectedDrawActiveGeometry />
         <ConnectedDrawStreamDetection />
         <ConnectedDrawLabels />
-        <ConnectedDrawEnergies />
+                <ConnectedDrawEnergies />
+            
         {/* <ConnectedLogger /> */}
         <Text
                             position={[-1300, 300, 0]}
@@ -166,10 +170,14 @@ const SpecGL = (params) => {
                     height={100}
 
                 />
+            
+                
         <Suspense fallback={null}>
             <ConnectedStreamImages />
         </Suspense>
-                
+
+        
+
         {/* <ConnectedGLHud />  */}
             
             </Canvas>

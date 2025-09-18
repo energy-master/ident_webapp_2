@@ -113,27 +113,35 @@ function DetectionsDialogue(props) {
     const buildRows = (data) => {
 
         rows = [];
-        
-        for (let i = 0; i < (data.length); i++) {
-          
-            //console.log(data[i]);
-            if (data[i]['detections'].length == 0) {
-                continue;
+        console.log(data);
+        let row_number = 0;
+        if (data.length > 0)
+        {
+            console.log('fd');
+            //for (let i = data.length-1; i == 0; i--) {
+            //for (let i = 0; i < data.length; i++) {
+            for (let i = data.length - 1; i >= 0; i--) {
+                console.log(data[i]);
+                if (data[i]['detections'].length == 0) {
+                    continue;
+                }
+                console.log(data.length - row_number);
+                rows.push({
+
+                    "id": row_number,
+                    "detection_model": data[i]['model'],
+                    "detection_file": data[i]['file_root'],
+                    "download": file_http + "/" + data[i]['detections'][0]["body"]["filename"],
+                    "file_full": data[i]['detections'][0]["body"]["filename"]
+
+                });
+                row_number += 1;
+
+
             }
-           
-            rows.push({
-
-                "id": i,
-                "detection_model": data[i]['model'],
-                "detection_file": data[i]['file_root'],
-                "download": file_http + "/" + data[i]['detections'][0]["body"]["filename"],
-                "file_full": data[i]['detections'][0]["body"]["filename"]
-              
-            });
-
 
         }
-       
+      
        
 
 

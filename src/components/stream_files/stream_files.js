@@ -66,6 +66,7 @@ let last_stream_location = "";
 // }
 function StreamFiles(props) {
 
+    
 
     let columns = [
 
@@ -113,9 +114,10 @@ function StreamFiles(props) {
                     onClick={() => {
 
                         let dl_path = params.value;
+                        let _spl = params.value.split("%");
                         const link = document.createElement("a");
-                        link.download = dl_path;
-                        link.href = dl_path;
+                        link.download = _spl[1];
+                        link.href = _spl[0];
                         link.click();
 
                     }}
@@ -192,6 +194,7 @@ function StreamFiles(props) {
                 selected_stream_tag = "saved_files";
             }
 
+        
             dispatch({ type: "FILE_PATH_SELECTED", payload: file_url });
         
             
@@ -258,7 +261,7 @@ function StreamFiles(props) {
             let root_fn = data[i]['filename'].split('.')[0];
             let detection_present = false;
             let number_detections = 0;
-            for (let i = 0; i < detections.length; i++){
+            for (let i = detections.length-1; i >= detections.length; i--){
                 // console.log(detections[i].file_root, root_fn);
                 if (detections[i].file_root == root_fn) {
                     detection_present = true;
@@ -272,7 +275,7 @@ function StreamFiles(props) {
                 "name": data[i]['filename'],
                 // "time": data[i]['datetime']['date'],
                 // "detection": detection_present ? `[${number_detections} detection(s).]` : '',
-                "download": file_http + "/" + data[i]['filename']
+                "download": file_http + "/" + data[i]['filename'] + "%" + data[i]['filename']
                
         
             });

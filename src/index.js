@@ -62,12 +62,35 @@ const store = createStore((state = app_data, action) => {
   //STREAM_SELECTED
   if (action.type == ('CAMERA_ORDER')) {
 
-
+    let current_p = state.acousticFileData;
     console.log(action.payload['order_type']);
     if (action.payload['order_type'] = 'fixed'){
       return {
         ...state,
         camera_orders: action.payload,
+
+      }
+    }
+
+
+    if (action.payload['order_type'] = 'home') {
+
+
+      if (state.selected_stream.length > 0) {
+
+        let ofd = state.ordered_stream_files;
+        console.log(ofd);
+        console.log(ofd[state.selected_stream[0]][0]['filename']);
+
+        
+        current_p.fileName = ofd[state.selected_stream[0]][0]['filename'];
+        current_p.timestamp = ofd[state.selected_stream[0]][0]['timeZulu'];
+      }
+
+      return {
+        ...state,
+        camera_orders: action.payload,
+        acousticFileData: current_p
 
       }
     }
@@ -195,6 +218,24 @@ const store = createStore((state = app_data, action) => {
   //GO_LIVE
   if (action.type == ('GO_LIVE')) {
     console.log("going live");
+    console.log(state.selected_stream);
+    if (state.selected_stream.length > 0) {
+      
+   
+      let ofd = state.ordered_stream_files;
+      console.log(ofd);
+      console.log(ofd[state.selected_stream[0]][1]['filename']);
+
+      let current_p = state.acousticFileData;
+      current_p.fileName = ofd[state.selected_stream[0]][1]['filename'];
+      current_p.timestamp = ofd[state.selected_stream[0]][1]['timeZulu'];
+
+      return {
+        ...state,
+        acousticFileData: current_p
+      }
+    }
+
   }
   if (action.type == ('FILE_SELECTED')) {
 
@@ -250,7 +291,7 @@ const store = createStore((state = app_data, action) => {
   }
   if (action.type == ('MODEL_SELECTED')) {
 
-   
+    
     let selectedTag = action.payload;
     let current_models = state.selected_models;
     if (current_models.includes(selectedTag)) {
