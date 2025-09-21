@@ -168,13 +168,25 @@ const WindowGUI = (props) => {
                     handle=".window-header" // Only drag by the header
                 >
         
-                    <div ref={nodeRef} style={{ width: '40%', left: '10%', top: '10%', position: 'absolute' }}>
+                    <div ref={nodeRef} style={{ width: '90%', left: '3%', top: '10%', position: 'absolute' }}>
                         {/* <div className="window-header" > */}
                         <div>
                             <div className="window-header" style={{
                                 width: '50px', height: '25px', background: '#292D39', backgroundColor: '#292D39', bgcolor: '#292D39', color: 'white', left: '91%', position: 'absolute', zIndex: 100, cursor: 'pointer', textAlign: 'center'
                             }}>...</div>
 
+                                <Accordion sx={{ bgcolor: '#292D39', color: '#efeff1ff', width: '90%' }}>
+                                    <AccordionSummary
+                                        expandIcon={<ArrowDropDownIcon sx={{ color: '#818698' }} />}
+                                        aria-controls="panel3-content"
+                                        id="panel3-header"
+                                    >
+                                        <Typography component="span">Detection Models</Typography>
+                                    </AccordionSummary>
+                                    <AccordionDetails>
+                                        <ConnectedActiveModelDialogue />
+                                    </AccordionDetails>
+                                </Accordion>
                             <Accordion sx={{ bgcolor: '#292D39', color: '#efeff1ff', width: '90%' }}>
                                 <AccordionSummary
                                     expandIcon={<ArrowDropDownIcon sx={{ color: '#818698' }} />}
@@ -284,7 +296,7 @@ const WindowGUI = (props) => {
 
 
 
-        <Draggable
+        {/* <Draggable
             nodeRef={nodeRef}
             handle=".window-header" // Only drag by the header
 
@@ -314,7 +326,7 @@ const WindowGUI = (props) => {
 
         </div>
 
-        </Draggable >
+        </Draggable > */}
 
                     {/* <Draggable
                         
@@ -353,7 +365,7 @@ const WindowGUI = (props) => {
             nodeRef={nodeRef}
             handle=".window-header" // Only drag by the header
         >
-            <div ref={nodeRef} style={{ width: '45%', left: '55%', top: '40%', position: 'absolute' }}>
+            <div ref={nodeRef} style={{ width: '90%', left: '3%', top: '20%', position: 'absolute', zIndex:'100' }}>
                 {/* <div className="window-header" > */}
                 <div>
                     <div className="window-header" style={{
@@ -372,7 +384,19 @@ const WindowGUI = (props) => {
                             <ConnectedModelParams />
                             <ConnectedAppProgressBar />
                         </AccordionDetails>
-                    </Accordion>
+                                </Accordion>
+                                <Accordion sx={{ bgcolor: '#292D39', color: '#efeff1ff', width: '90%' }}>
+                                    <AccordionSummary
+                                        expandIcon={<ArrowDropDownIcon sx={{ color: '#818698' }} />}
+                                        aria-controls="panel3-content"
+                                        id="panel3-header"
+                                    >
+                                        <Typography component="span">Simulation Models</Typography>
+                                    </AccordionSummary>
+                                    <AccordionDetails>
+                                        <ConnectedSimModelsDialogue />
+                                    </AccordionDetails>
+                                </Accordion>
                     {/* </div> */}
                 </div>
             </div>
@@ -382,7 +406,7 @@ const WindowGUI = (props) => {
             nodeRef={nodeRef}
             handle=".window-header" // Only drag by the header
         >
-            <div ref={nodeRef} style={{ width: '30%', left: '55%', top: '30%', position: 'absolute' }}>
+                        <div ref={nodeRef} style={{ width: '90%', left: '3%', top: '10%', position: 'absolute' ,zIndex: '200' }}>
                 {/* <div className="window-header" > */}
                 <div>
                     <div className="window-header" style={{

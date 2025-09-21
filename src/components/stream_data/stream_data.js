@@ -81,10 +81,10 @@ function StreamData(props) {
             });
         }
 
-        rows.push({
-            "id": data.length,
-            "name": "Saved Files"
-        });
+        // rows.push({
+        //     "id": data.length,
+        //     "name": "Saved Files"
+        // });
 
         dispatch({ type: "STREAMS_LOADED", payload: rows });
         

@@ -172,17 +172,20 @@ function DetectionsDialogue(props) {
     if (props.selected_stream.length > 0) {
         selected_stream_tag = props.selected_stream[0];
         if (selected_stream_tag in props.detections) {
-            //console.log("looking now");
+            console.log("looking now");
             let valid_decisions = [];
+            console.log(props.detections[selected_stream_tag]);
             for (let i = 0; i < props.detections[selected_stream_tag].length; i++){
                // console.log(props.detections[selected_stream_tag][i]['model'], props.view_models["interesting"]);
-                if (props.view_models["interesting"].includes(props.detections[selected_stream_tag][i]['model'])) {
+                //if (props.view_models["interesting"].includes(props.detections[selected_stream_tag][i]['model'])) {
+                console.log(props.detections[selected_stream_tag][i]);
+                if (props.detections[selected_stream_tag][i]['model'].includes(props.view_models["interesting"][0])) {
                     console.log("hit");
                     valid_decisions.push(props.detections[selected_stream_tag][i]);
                 }
 
             }
-           // console.log(valid_decisions);
+            console.log(valid_decisions);
             buildRows(valid_decisions);
         }
     }

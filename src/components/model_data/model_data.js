@@ -13,26 +13,37 @@ import Typography from '@mui/material/Typography';
 import { propsStateInitializer } from '@mui/x-data-grid/internals';
 
 
-let columns = [
-    
-    {
-        field: 'name', headerName: 'Model ID', width: 300,
-        editable: false,
-        flex: 1,
-        headerClassName: 'dataHdr',
-        renderCell: (params) => (
-            <Typography variant="overline" sx={{ color: 'white' }}>
-                {params.value}
-            </Typography>
-        ),
-        
-    }
-   
-
-];
-
 
 function ModelData(props) {
+
+
+    let columns = [
+
+        {
+            field: 'name', headerName: 'Model ID', width: 300,
+            editable: false,
+            flex: 1,
+            headerClassName: 'dataHdr',
+            renderCell: (params) => (
+
+              
+
+                (props.selected_models.includes(params.value) ?
+                    <Typography variant="overline" sx={{ color: 'white', background:'green', fontSize: '14px' }}>
+                        {params.value}
+                    </Typography>    
+                : (
+                        <Typography variant="overline" sx={{ color: 'white' }}>
+                            {params.value}
+                        </Typography>
+                ))
+            ),
+
+        }
+
+
+    ];
+
 
     const dispatch = useDispatch();
 
@@ -65,14 +76,13 @@ function ModelData(props) {
         rows = [];
         for (let i = 0; i < (data.length); i++){
             console.log(data[i]);
+
+
             rows.push({
                 
                     "id": i,
                     "name": data[i]
-                    // "study_focus": "Investigate the adaption of duration of activation times in searching for HP clicks. Simply Energy Spikes of energy peaks at high res time ( with temporal element ) Active when within threshold. Starting with low spike energy percentages.[VectorEnergySpike] &[VectorEnergySpikeTemporal]",
-                    // "training_set_description": "sim_ids = [7430472924515043056643,896731126311732357710735] -  initial low s/n. Repeat of earlier work.",
-                    // "environment_name": "smooth_temporal",
-                    // "target": "hp_click"
+                    
                 
             });
 
@@ -90,16 +100,21 @@ function ModelData(props) {
         event, // MuiEvent<React.MouseEvent<HTMLElement>>
         details, // GridCallbackDetails
     ) => {
+        console.log(details);
         console.log(params);
-        dispatch({ type: "MODEL_SELECTED", payload: params['row']['name']});
+
+        dispatch({ type: "MODEL_SELECTED", payload: params['row']['name'] });
+        
+        // params['row']['name'] = params['row']['name'] + " [selected]";
+        
     };
       
-
+    let selected_models = props.selected_models;
     if (rows.length < 2) { 
         getModelList();
     }
     
-    let selected_models = props.selected_models;
+    
    
     return (
 
@@ -129,6 +144,16 @@ function ModelData(props) {
                             // Styles for the "Rows per page" label and displayed rows count
                             fontSize: '1.0rem',
                             color: 'primary.main'
+                        }, "& .MuiDataGrid-row:hover": {
+                    backgroundColor: "blue"
+                            // color: "red"
+                        }, "&.Mui-selected": {
+                            backgroundColor: "#292D39",
+                color: "white",
+                            // Add more specific selectors for other elements within pagination
+
+                        }, "& .MuiDataGrid-row.Mui-selected": {
+                            backgroundColor: "#292D39",
                         },
                     }}
                     rows={rows}

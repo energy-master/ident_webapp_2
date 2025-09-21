@@ -111,7 +111,7 @@ const SpecGL = (params) => {
             >
                 {/* <ambientLight intensity={5.5} color="white" /> */}
                 {/* <spotLight position={[0, 0, -1000]} angle={Math.PI / 4} penumbra={1.5} intensity={10} color="white" castShadow /> */}
-                <directionalLight position={[0, 10, 5000]} intensity={10} color="green" castShadow />
+                <directionalLight position={[0, 10, 5000]} intensity={10} color="red" castShadow />
                 {/* <Particles 
                     xsize={1000}
                     ysize={1000}
@@ -175,7 +175,7 @@ const SpecGL = (params) => {
         <Suspense fallback={null}>
             <ConnectedStreamImages />
         </Suspense>
-        <Box />
+        <BoundingBox />
         
 
         {/* <ConnectedGLHud />  */}
@@ -258,14 +258,14 @@ function ImageBox({
 
 
 
-function Box() {
+function BoundingBox() {
     // This reference will give us direct access to the mesh
     const meshRef = useRef()
     // Set up state for the hovered and active state
     const [hovered, setHover] = useState(false)
     const [active, setActive] = useState(false)
     // Subscribe this component to the render-loop, rotate the mesh every frame
-    useFrame((state, delta) => (meshRef.current.rotation.x += delta))
+    //useFrame((state, delta) => (meshRef.current.rotation.x += delta))
     // Return view, these are regular three.js elements expressed in JSX
     return (
         <mesh
@@ -275,8 +275,8 @@ function Box() {
             onClick={(event) => setActive(!active)}
             onPointerOver={(event) => setHover(true)}
             onPointerOut={(event) => setHover(false)}>
-            <boxGeometry args={[10, 10, 10]} />
-            <meshStandardMaterial color={hovered ? 'hotpink' : 'orange'} />
+            <boxGeometry args={[10, 10, 1]} />
+            <meshStandardMaterial color={hovered ? 'red' : 'red'} wireframe={true} />
         </mesh>
     )
 }

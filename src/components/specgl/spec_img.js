@@ -20,7 +20,7 @@ function StreamImages(params)  {
     const dispatch = useDispatch();
 
     //ole.log(params.current_filename);
-    // console.log(params.selected_stream[0]);
+    console.log(params.selected_stream);
     if (params.selected_stream.length < 1){
         return;
     }
@@ -55,31 +55,25 @@ function StreamImages(params)  {
     let f_draw_data = {}
 
    
-
+    console.log(params.ordered_stream_files);
     if (params.ordered_stream_files.hasOwnProperty(params.selected_stream[0])) {
         let start_stream_idx = 0;
-        let end_stream_idx = 20;
+        let end_stream_idx = 5;
         for (let z = 0; z < params.ordered_stream_files[params.selected_stream[0]].length; z++){
             if (params.ordered_stream_files[params.selected_stream[0]][z]["filename"] == params.current_filename) {
                 
-                start_stream_idx = Math.max(0, (z - 12));
-                end_stream_idx = Math.min(params.ordered_stream_files[params.selected_stream[0]].length - 1, z + 12)
+                start_stream_idx = Math.max(0, (z - 3));
+                end_stream_idx = Math.min(params.ordered_stream_files[params.selected_stream[0]].length, z + 3)
                 start_gl_x = (params.openGl.x_width) * start_stream_idx;
+                console.log(start_stream_idx, end_stream_idx, start_gl_x)
             }
         }
         
-        // console.log(start_gl_x);
-        // console.log(start_stream_idx);
-        // console.log(params.ordered_stream_files[params.selected_stream[0]]);
-        // console.log(end_stream_idx);
-        //console.log(params.ordered_stream_files[params.selected_stream[0]].length);
-        
-        //for (let i = 0; i < Math.min(params.ordered_stream_files[params.selected_stream[0]].length, 20); i++) {
-        //for (let i = params.ordered_stream_files[params.selected_stream[0]].length-1; i > -1; i--) {
+       
         for (let i = start_stream_idx; i < end_stream_idx; i++) {
 
             let gl_w = stream_src ? params.openGl.x_width : params.openGl.x_width;
-           // console.log(imgPath + '/' + params.ordered_stream_files[params.selected_stream[0]][i].file_root + "_spec.jpg")
+            console.log(imgPath + '/' + params.ordered_stream_files[params.selected_stream[0]][i].file_root + "_spec.jpg")
             
             
             

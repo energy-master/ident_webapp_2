@@ -166,9 +166,11 @@ const DrawStreamDetection = (props) => {
         dataSetArray.push({
             'points': points,
             'label': 'interesting',
-            'position': [xgl_start, ygl_min,60]
+            'position': [xgl_start, ygl_min, 60],
+            'width': xgl_end - xgl_start,
+            'height' : ygl_max-ygl_min
         });
-
+        console.log(dataSetArray);
     }
 
     // *** Grab detections ***
@@ -179,7 +181,7 @@ const DrawStreamDetection = (props) => {
     if (props.detections.hasOwnProperty(props.selected_stream[0])) {
         for (let i = 0; i < props.detections[props.selected_stream[0]].length; i++) {
             let detection_file_root = props.detections[props.selected_stream[0]][i].file_root;
-            if (props.selected_view_models["interesting"].includes(props.detections[props.selected_stream[0]][i].model)) {
+            if (props.detections[props.selected_stream[0]][i].model.includes(props.selected_view_models["interesting"][0])) {
                 active_detections.push(props.detections[props.selected_stream[0]][i].detections);
             }
 
@@ -218,7 +220,7 @@ const DrawStreamDetection = (props) => {
                     dataSetArray.map((item, key) => (
                         <>
                         <PlotGeo points={item.points} color='red' label={item.label} width={4.0} />
-                            {/* <Box position={ item.position } /> */}
+                            {/* <BoundingBox position={item.position} points={item.points} color='red' label={item.label} width={4.0} />  */}
                         </>
                     ))
                 }
@@ -254,12 +256,12 @@ const mapStateToProps = (state) => ({
     detections: state.detections,
     selected_stream: state.selected_stream,
     ordered_stream_files: state.ordered_stream_files,
-    file_data: state.file_data,
-    f_draw_data: state.file_draw_data
+    file_data: state.file_data
+   
     
     
 })
-
+// f_draw_data: state.file_draw_data
 const ConnectedDrawStreamDetection = connect(mapStateToProps)(DrawStreamDetection);
 export default ConnectedDrawStreamDetection;
 
@@ -322,7 +324,7 @@ function Box({
             
             ref={meshRef}
             scale={active ? 1.5 : 1}
-            onClick={(event) => setActive(!active)}
+            onClick={(event) => { console.log("active"); }}
             onPointerOver={(event) => setHover(true)}
             onPointerOut={(event) => setHover(false)}
             position={position}
@@ -332,3 +334,34 @@ function Box({
         </mesh>
     )
 }
+
+
+function BoundingBox(
+    position,
+    points,
+    width
+) {
+    console.log(position);
+    // This reference will give us direct access to the mesh
+    const meshRef = useRef()
+    // Set up state for the hovered and active state
+    const [hovered, setHover] = useState(false)
+    const [active, setActive] = useState(false)
+    // Subscribe this component to the render-loop, rotate the mesh every frame
+    //useFrame((state, delta) => (meshRef.current.rotation.x += delta))
+    // Return view, these are regular three.js elements expressed in JSX
+    return (
+        <mesh
+            
+            ref={meshRef}
+            scale={active ? 1.5 : 1}
+            onClick={(event) => setActive(!active)}
+            onPointerOver={(event) => setHover(true)}
+            onPointerOut={(event) => setHover(false)}>
+            <meshLineGeometry points={points} width={2.0} />
+            <meshLineMaterial emissive lineWidth={width} color={hovered ? 'white' : 'red'} wireframe={false} />
+
+        </mesh>
+    )
+}
+

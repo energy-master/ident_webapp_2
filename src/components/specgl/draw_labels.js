@@ -122,6 +122,7 @@ const DrawLabels = (props) => {
 
     // get active labels
     if (props.labels.hasOwnProperty(props.selected_stream[0])) {
+        console.log(props.labels);
         for (let i = 0; i < props.labels[props.selected_stream[0]].length; i++) {
            // if (props.selected_view_models["interesting"].includes(props.detections[props.selected_stream[0]][i].model)) {
                 active_labels.push(props.labels[props.selected_stream[0]][i]);

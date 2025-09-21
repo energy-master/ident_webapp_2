@@ -312,7 +312,7 @@ const store = createStore((state = app_data, action) => {
 
     return {
       ...state,
-      selected_models: current_models
+      selected_models: current_models 
     }
   }//
 

@@ -156,30 +156,38 @@ const PlotLabels = (props) => {
     let width = 0;
     let freq_labels = [];
     for (const [key, value] of Object.entries(props.f_draw_data)) {
-        // let plot_data = value;
-        // let x_pos = value['xpos'];
-        // if (x_pos < min_x) {
-        //     min_x = xpos;
-        // }
+        
         console.log(value);
         console.log(key);
         console.log(props.file_data);
-        let f_data = props.file_data[props.selected_streams[0]][key];
-        console.log(f_data);
-        let points = [];
-        points.push(value['xpos'], value['ypos'] - 10, value['zpos']+10, value['xpos'], value['ypos'] + value['height'], value['zpos']+10);
-        freq_labels.push({
 
-            "x_pos": value['xpos']-20,
-            "y_base": value['ypos'],
-            "z_pos": value['zpos'],
-            "height": value['height'],
-            "width":value['width'],
-            "max_freq": f_data["f_max"],
-            "max_time": f_data["elapsed_time"],
-            "points" : points
+        if (props.file_data.hasOwnProperty(props.selected_streams[0])) {
+            
+        
+            let f_data = props.file_data[props.selected_streams[0]][key];
+            console.log(f_data);
+            let points = [];
+            points.push(value['xpos'], value['ypos'] - 10, value['zpos'] + 10, value['xpos'], value['ypos'] + value['height'], value['zpos'] + 10);
+            let max_freq = 0;
+            let max_time = 0;
+            if (f_data.hasOwnProperty("f_max")) {
+                max_freq = f_data["f_max"];
+                max_time = f_data["elapsed_time"];
+            }
+            freq_labels.push({
 
-        });
+                "x_pos": value['xpos'] - 20,
+                "y_base": value['ypos'],
+                "z_pos": value['zpos'],
+                "height": value['height'],
+                "width": value['width'],
+           
+                "max_freq": max_freq,
+                "max_time": max_time,
+                "points": points
+
+            });
+        }
 
     }
 
@@ -329,4 +337,5 @@ const Axis = ({
         </>
     )
 }
+
 
