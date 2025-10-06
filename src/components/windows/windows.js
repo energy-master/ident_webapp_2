@@ -198,7 +198,19 @@ const WindowGUI = (props) => {
                                 <AccordionDetails>
                                     <ConnectedDetectionsDialogue />
                                 </AccordionDetails>
-                            </Accordion>
+                                </Accordion>
+                                <Accordion sx={{ bgcolor: '#292D39', color: '#efeff1ff', width: '90%' }}>
+                                    <AccordionSummary
+                                        expandIcon={<ArrowDropDownIcon sx={{ color: '#818698' }} />}
+                                        aria-controls="panel3-content"
+                                        id="panel3-header"
+                                    >
+                                        <Typography component="span">Label List</Typography>
+                                    </AccordionSummary>
+                                    <AccordionDetails>
+                                        <ConnectedLabelsDialogue />
+                                    </AccordionDetails>
+                                </Accordion>
                             {/* </div> */}
                        
                         </div>

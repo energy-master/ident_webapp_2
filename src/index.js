@@ -157,7 +157,7 @@ const store = createStore((state = app_data, action) => {
   }
   
   if (action.type == ('LABELS_LOADED')) {
-
+    
     return {
       ...state,
       labels: action.payload

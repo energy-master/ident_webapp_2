@@ -165,15 +165,25 @@ const PlotLabels = (props) => {
             
         
             let f_data = props.file_data[props.selected_streams[0]][key];
+
+            // exit if not f_data
+
+
             console.log(f_data);
             let points = [];
             points.push(value['xpos'], value['ypos'] - 10, value['zpos'] + 10, value['xpos'], value['ypos'] + value['height'], value['zpos'] + 10);
             let max_freq = 0;
             let max_time = 0;
-            if (f_data.hasOwnProperty("f_max")) {
-                max_freq = f_data["f_max"];
-                max_time = f_data["elapsed_time"];
+            try {
+                if (f_data.hasOwnProperty("f_max")) {
+                    max_freq = f_data["f_max"];
+                    max_time = f_data["elapsed_time"];
+                }
             }
+            catch {
+                
+            }
+           
             freq_labels.push({
 
                 "x_pos": value['xpos'] - 20,

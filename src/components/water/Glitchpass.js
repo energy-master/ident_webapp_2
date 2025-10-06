@@ -18,6 +18,7 @@ import { DataTexture, FloatType, Math as _Math, Mesh, OrthographicCamera, PlaneB
 import { Pass } from 'three/examples/jsm/postprocessing/Pass.js'
 
 var DigitalGlitch = {
+  
     uniforms: {
         tDiffuse: { value: null }, //diffuse texture
         tDisp: { value: null }, //displacement texture for digital glitch squares

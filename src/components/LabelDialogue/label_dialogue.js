@@ -92,9 +92,9 @@ function LabelsDialogue(props) {
             
             let date1 = new Date(file_time_zulu);
             let date2 = new Date(label_time);
-            //console.log(date1, date2);
+            console.log(date1, date2);
             diff = (date1.getTime() - date2.getTime()) / 1000;
-            //console.log(diff);
+            console.log(diff);
             if (diff >= 0) {
                 // console.log(diff);
                 if (diff < 300) {
@@ -118,9 +118,9 @@ function LabelsDialogue(props) {
     const buildRows = (data) => {
 
         rows = [];
-        
+        console.log(props.labels[selected_stream_tag]);
         for (let i = 0; i < (data.length); i++) {
-            //console.log(data[i]);
+            console.log(data[i]);
             let idx = GetFileLocation(data[i]);
             if (idx == -1){
                 console.log(idx);
@@ -165,15 +165,18 @@ function LabelsDialogue(props) {
 
    
     console.log("building label list");
+    console.log(props.selected_stream);
     if (props.selected_stream.length > 0) {
         selected_stream_tag = props.selected_stream[0];
+        console.log(selected_stream_tag);
         if (selected_stream_tag in props.labels) {
             
             let valid_labels = [];
             for (let i = 0; i < props.labels[selected_stream_tag].length; i++){
                // console.log(props.detections[selected_stream_tag][i]['model'], props.view_models["interesting"]);
                 //if (props.view_models["interesting"].includes(props.detections[selected_stream_tag][i]['model'])) {
-                    //console.log("hit");
+                //console.log("hit");
+                    console.log(props.labels[selected_stream_tag][i]);
                     valid_labels.push(props.labels[selected_stream_tag][i]);
                 //}
 
@@ -182,6 +185,7 @@ function LabelsDialogue(props) {
             buildRows(valid_labels);
         }
     }
+
     console.log(rows);
     if (rows.length == 0) {
         rows = [

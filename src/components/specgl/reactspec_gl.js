@@ -148,7 +148,7 @@ const SpecGL = (params) => {
         <ConnectedDrawActiveGeometry />
         <ConnectedDrawStreamDetection />
         <ConnectedDrawLabels />
-                <ConnectedDrawEnergies />
+        <ConnectedDrawEnergies />
             
         {/* <ConnectedLogger /> */}
         <Text

@@ -18,13 +18,11 @@ extend({ MeshLineGeometry, MeshLineMaterial })
 
 const DrawEnergies = (props) => {
 
-  //  console.log("energy drawing");
-    //console.log(props.model_parameters.fileName);
+ 
 
     if (props.current_fileName == "No Active File"){
         return;
     }
-
 
     if (props.interesting_data.length < 1) {
         return;
@@ -32,21 +30,15 @@ const DrawEnergies = (props) => {
 
     let points = [];
     let color = 'red';
-    //console.log(props.activityPlotData);
-    //let xAxis = props.activityPlotData['labels'];
-    //let dataSetArray = Array.from((props.activityPlotData['datasets']));
-
+    
     let dataSetArray = Array();
 
-   
-    
-    
-
-   
     console.log(props.file_draw_data);
     console.log(props.model_parameters);
     console.log(props.current_fileName);
     console.log(props.file_draw_data);
+
+
     if (!props.file_draw_data.hasOwnProperty(props.current_fileName))
     {
         return;

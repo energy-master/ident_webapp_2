@@ -21,6 +21,35 @@ const PollData = (props) => {
     
     const dispatch = useDispatch();
 
+    
+
+    // const grabBatchRunData = () => {
+    //     console.log('grab interesting data');
+    //     //let interesting_data_path = '/marlin_live_data/batch_' + props.model_parameters[0].model_id + '_interesting_out.json';
+
+    //     fetch(interesting_data_path)
+    //         .then((response) => {
+
+    //             ; if (response.statusText == 'OK') {
+    //                 return (response.json());
+    //             }
+    //             else {
+    //                 return 'error';
+    //             }
+    //         })
+    //         .then((json_data) => {
+    //             console.log(json_data);
+    //             if (json_data != 'error') {
+    //                 console.log(json_data);
+    //                 dispatch({ type: 'SIM_MODELS_UPDATE', payload: json_data['loaded_targets'] });
+    //                 dispatch({ type: 'SIM_ACTIVITY', payload: json_data['bot_activity'] });
+    //                 dispatch({ type: 'SIM_FILE_TIME', payload: json_data['elapsed_time'] });
+    //                 dispatch({ type: 'SIM_FILE_FREQ', payload: json_data['frequency_data'] });
+    //             }
+    //         });
+    // }
+
+
     const grabInterestingData = () => {
         console.log('grab interesting data');
         let interesting_data_path = '/marlin_live_data/' + props.model_parameters[0].model_id + '_interesting_out.json';
