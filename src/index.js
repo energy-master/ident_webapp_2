@@ -136,6 +136,15 @@ const store = createStore((state = app_data, action) => {
     }
 
   }
+  if (action.type == ('STREAM_SIM')) {
+    // console.log(action.payload);
+    return {
+      ...state,
+      stream_sim: action.payload
+    }
+
+  }
+  //
   if (action.type == ('SIM_ACTIVITY')) {
 
     return {

@@ -129,6 +129,7 @@
             "Log" : false,
             "GIS" : true
         }
-    ]
+    ],
+    "stream_sim" : {}
 }
     

@@ -5,7 +5,7 @@ import { GridMoreVertIcon, renderActionsCell } from '@mui/x-data-grid'
 import * as THREE from 'three';
 import { DoubleSide } from 'three'
 
-import { Stats, OrbitControls, Line, Points } from '@react-three/drei';
+import { Stats, OrbitControls, Line, Points, Text } from '@react-three/drei';
 import { useControls } from 'leva';
 import { columnResizeStateInitializer, escapeRegExp, useGridParamsApi } from '@mui/x-data-grid/internals';
 import { getListItemSecondaryActionClassesUtilityClass } from '@mui/material/ListItemSecondaryAction';
@@ -104,7 +104,7 @@ const DrawLabels = (props) => {
             points.push(xgl_start, ygl_min, 40, xgl_start, ygl_max, 40, xgl_end, ygl_max, 40, xgl_end, ygl_min, 40, xgl_start, ygl_min, 40);
             dataSetArray.push({
                 'points': points,
-                'label': 'interesting'
+                'label': label['label']
             });
 
         }
@@ -211,9 +211,21 @@ const PlotGeo = ({
  
 
     return (
-        <mesh ref={ref}>
-            <meshLineGeometry points={points} widthCallback={(p) => p > 0.8 ? 1.5 : 0.4} />
-            <meshLineMaterial emissive lineWidth={width} color={color} wireframe={false} />
-        </mesh>
+        <>
+            <mesh ref={ref}>
+                <meshLineGeometry points={points} widthCallback={(p) => p > 0.8 ? 1.5 : 0.4} />
+                <meshLineMaterial emissive lineWidth={width} color={color} wireframe={false} />
+            </mesh>
+ 
+             <Text
+                position={[points[0]+500,points[1]+(100*Math.random(0,500)),points[2] ]}
+                            scale={[11, 11, 11]}
+                            color="white"       // default
+                            anchorX="left"    // default
+                            anchorY="middle"    // default 
+                        >
+                {label}
+             </Text>
+        </>
     )
 }

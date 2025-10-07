@@ -61,6 +61,11 @@ function StreamData(props) {
             // start data polling
             buildRows(stream_data['stream_ids']);
 
+            let url_sim = "https://marlin-network.hopto.org/cgi-bin/get_sim.php";
+            axios.post(url_sim, formData, config).then((response_sim) => {
+                let sim_data = response_sim.data;
+                dispatch({ type: "STREAM_SIM", payload: sim_data['batch_sim'] });
+            });
 
 
         });

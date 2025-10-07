@@ -28,6 +28,7 @@ import ConnectedGLHud from './hud';
 import ConnectedCameraAction from '../camera/camera';
 import Particles from './particles';
 import ConnectedStreamImages from './spec_img';
+import ConnectedDrawStreamEnergies from './draw_stream_energies';
 import ConnectedDrawStreamDetection from './draw_stream_detections';
 import ConnectedDrawLabels from './draw_labels';
 import Button from '@mui/material/Button';
@@ -149,7 +150,8 @@ const SpecGL = (params) => {
         <ConnectedDrawStreamDetection />
         <ConnectedDrawLabels />
         <ConnectedDrawEnergies />
-            
+        <ConnectedDrawStreamEnergies />
+    
         {/* <ConnectedLogger /> */}
         <Text
                             position={[-1300, 300, 0]}

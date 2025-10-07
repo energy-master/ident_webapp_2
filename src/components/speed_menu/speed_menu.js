@@ -9,7 +9,7 @@ import ConnectedFileuploadbtn from '../Fileuploadbtn.js';
 import SearchIcon from '@mui/icons-material/Search';
 import CrisisAlertIcon from '@mui/icons-material/CrisisAlert';
 const IDentSpeedMenu = ({
-    
+   
     actions = [
         { icon: <DriveFolderUploadIcon />, name: 'Connect' },
       { icon: <SearchIcon />, name: 'Search' },
@@ -17,7 +17,6 @@ const IDentSpeedMenu = ({
       ]
 
 }) => {
-
     const dispatch = useDispatch();
 return (
     <SpeedDial
